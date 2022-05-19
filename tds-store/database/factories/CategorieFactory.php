@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Categorie;
+use Illuminate\Support\Str;
+
 
 class CategorieFactory extends Factory
 {
@@ -22,10 +24,14 @@ class CategorieFactory extends Factory
      */
     public function definition()
     {
+        $nom = 'cat-' . $this->faker->lastName();
+        $slug= Str::slug($nom . $this->faker->time($format = 's', $max = 'now'));
         return [
-           'nom' => $this->faker->lastName(),
+           'nom' => $nom ,
+           'slug' => $slug,
            'created_at' => $this->faker->date(),
            'updated_at' => $this->faker->date(),
         ];
     }
+
 }

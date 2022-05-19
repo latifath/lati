@@ -15,6 +15,8 @@ class CreatePartenairesTable extends Migration
     {
         Schema::create('partenaires', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nom');
+            $table->string('slug')->unique();
             $table->string('logo');
             $table->timestamps();
         });

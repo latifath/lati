@@ -15,14 +15,15 @@ class CreateProduitsTable extends Migration
     {
         Schema::create('produits', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('sous_categorie_id')->unsigned();
-            // $table->foreign('sous_categorie_id')->references('id')->on('sous_categories');
-            $table->string('name');
+            $table->string('nom');
             $table->string('description');
+            $table->string('slug')->unique();
             $table->integer('quantite');
             $table->float('prix');
+            $table->integer('sous_categorie_id')->unsigned();
+            $table->foreign('sous_categorie_id')->references('id')->on('sous_categories');
             $table->timestamps();
-            
+
         });
     }
 

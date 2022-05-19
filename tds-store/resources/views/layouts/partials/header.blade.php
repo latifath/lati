@@ -1,5 +1,4 @@
 <div class="container-fluid">
-    {{-- {{ dd(categorie_menu()) }} --}}
     <div class="row bg-secondary py-2 px-xl-5" style="font-size: 13.5px;">
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center">
@@ -58,8 +57,8 @@
 </div>
 
 <!-- Navbar Start -->
-<div class="container-fluid mb-5">
-    <div class="row border-top px-xl-5">
+<div class="container-fluid mb-5" style="color:#1C1C1C">
+    <div class="row border-top px-xl-5" >
         <div class="col-lg-12">
             <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                 <a href="" class="text-decoration-none d-block d-lg-none">
@@ -70,9 +69,16 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" style="background-color: #f0f0f0;">
-                    <div class="navbar-nav mr-auto py-0"
-                        style="padding: 10px 20px; background-color: #f0f0f0; margin-left: 260px; border-right: 1px solid #fff;">
+                    <div class="navbar-nav m-auto py-0"
+                        style="padding: 10px 20px; background-color: #f0f0f0; border-right: 1px solid #fff; color:#1C1C1C;">
+                        @php
+                            $i = 0
+                        @endphp
                         @foreach (categorie_menu() as $item)
+                        @php
+                            $i++
+                        @endphp
+                        @if($i <= 8)
                             @if(sous_categories_menu($item->id)->count() == 0)
                                 <a href="index.html" class="nav-item nav-link active"
                                     style="border-right: 1px solid #fff; padding-right: 40px;">{{ $item->nom }}</a>
@@ -87,7 +93,21 @@
                                     </div>
                                 </div>
                             @endif
+                            @endif
                         @endforeach
+
+                        {{-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                                data-toggle="dropdown" style="padding-right: 40px; border-right: 1px solid #fff;">Autre</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                @foreach (categorie_menu_other(categorie_menu()->count()) as $item)
+                                <a href="index.html" class="nav-item nav-link active"
+                                style="border-right: 1px solid #fff; padding-right: 40px;">{{ $item->nom }}</a>
+
+
+                                @endforeach
+                            </div>
+                        </div> --}}
                         {{-- @foreach ($categorie->sous_categorie as sous_categorie)
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle"
@@ -98,6 +118,7 @@
                                 </div>
                             </div>
                         @endforeach --}}
+
                         {{-- <a href="shop.html" class="nav-item nav-link">Shop</a>
                         <a href="detail.html" class="nav-item nav-link">Shop Detail</a> --}}
                         {{-- <div class="nav-item dropdown">

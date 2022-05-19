@@ -16,11 +16,11 @@ class CreateSousCategoriesTable extends Migration
         Schema::create('sous_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            // $table->foreignId('categorie_id')->constrained();
-            $table->timestamps();
             $table->integer('categorie_id')->unsigned();
             $table->foreign('categorie_id')->references('id')->on('categories');
-            
+            $table->string('slug')->unique();
+            $table->timestamps();
+
         });
     }
 

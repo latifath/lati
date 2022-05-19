@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Categorie;
+use App\Models\Panier;
 
-class CategorieSeeder extends Seeder
+class PanierSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -14,8 +15,6 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-        Categorie:: factory()->count(25)->create();
+        Panier:: factory()->count(10)->create();
     }
-
-
 }

@@ -4,12 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Image extends Model
 {
     use HasFactory;
+    use sluggable;
 
-    protected $fillable = [ 'produit_id', 'path', 'created_at', 'updated_at'];
+    public function sluggable():array
+    {
+        return [
+            'slug'=>[
+                'source' => 'nom'
+            ]
+            ];
+    }
+
+
+    protected $fillable = [ 'nom', 'slug', 'path', 'produit_id', 'created_at', 'updated_at'];
 
     public function produit()
     {

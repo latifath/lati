@@ -19,18 +19,24 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" media="all" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/lib/owlcarousel/assets/owl.carousel.min.css') }}" media="all" rel="stylesheet"/>
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('assets/css/style.css') }}" media="all" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/public/assets') }}" media="all" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-     @include('layouts.partials.header')
 
-     @yield('slide')
+    @include('layouts.partials.header')
+
+    @yield('produit')
+
+    @yield('newsletter')
+
+    @yield('partenaire')
+
     @yield('contenu')
+
 
     <!-- Footer Start -->
     @include('layouts.partials.footer')
@@ -44,8 +50,8 @@
     <!-- JavaScript Libraries -->
     <script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
     <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js></script>
-    <script src=lib/easing/easing.min.js></script>
-    <script src=lib/owlcarousel/owl.carousel.min.js></script>
+    <script src="{{ asset('assets/lib/easing/easing.min.js')  }}"></script>
+    <script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js')  }}"></script>
 
     <!-- Contact Javascript File -->
     <script src="{{ asset('assets/mail/jqBootstrapValidation.min.js') }}"></script>

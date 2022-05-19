@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Categorie;
+use App\Models\Stock;
 
-class CategorieSeeder extends Seeder
+class StockSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,6 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-        Categorie:: factory()->count(25)->create();
+        Stock:: factory()->count(10)->create();
     }
-
-
 }

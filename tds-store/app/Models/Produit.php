@@ -4,11 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Produit extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'souscategorie_id', 'nom', 'description', 'quantite', 'prix', 'image', 'created_at', 'updated_at' ];
+    use sluggable;
+
+    public function sluggable():array
+    {
+        return [
+            'slug'=>[
+                'source' => 'nom'
+            ]
+            ];
+    }
+
+    protected $fillable = [ 'souscategorie_id', 'nom', 'description', 'slug', 'quantite', 'prix', 'created_at', 'updated_at' ];
 
     public function promotions()
     {
@@ -29,7 +41,7 @@ class Produit extends Model
     {
     return $this->hasMany(PanierProduit::class);
     }
-    
+
     public function commande_produits()
     {
     return $this->hasMany(CommandeProduit::class);
@@ -46,7 +58,7 @@ class Produit extends Model
     }
 
 
-    
+
 
 }
 
