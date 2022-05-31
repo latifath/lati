@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            {{-- <img src="{{ url('logo.png') }}" /> --}}
+            <img src="{{ url('logo.png') }}" />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -10,38 +10,15 @@
             @csrf
 
             <div>
-                <x-jet-label for="nom" value="{{ __('Nom') }}" />
-                <x-jet-input id="nom" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required
-                    autofocus autocomplete="nom" />
+                <x-jet-label for="name" value="{{ __('Nom') }}" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                    autofocus autocomplete="name" />
             </div>
-
-            <div class="mt-4">
-                <x-jet-label for="prenom" value="{{ __('Prenom') }}" />
-                <x-jet-input id="prenom" class="block mt-1 w-full" type="text" name="prenom" :value="old('prenom')" required
-                    autofocus autocomplete="prenom" />
-            </div>
-
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
-
-
-            <div class="mt-4">
-                <x-jet-label for="telephone" value="{{ __('Telephone') }}" />
-                <x-jet-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')"
-                    required autofocus autocomplete="telephone" />
-            </div>
-
-
-            <div class="mt-4">
-                <x-jet-label for="pays" value="{{ __('Pays') }}" />
-                <x-jet-input id="pays" class="block mt-1 w-full" class="form-select"
-                    aria-label="Default select example" name="pays" :value="old('pays')" required />
-
-            </div>
-
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />

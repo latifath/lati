@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Categorie;
 
-use Illuminate\Http\Request;
+use App\Models\Produit;
+
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('site-public.index');
+        $produits_latest = Produit::orderBy('id', 'DESC')->limit(6)->get();
+        return view('site-public.index', compact('produits_latest'));
     }
 }

@@ -16,5 +16,12 @@ class Panier extends Model
     {
     return $this->hasMany(PanierProduit::class);
     }
-
+    public function getTotalQuantity()
+    {
+        return 3 ;
+    }
+    public function getTotal()
+    {
+        return 3 ;
+    }
 }

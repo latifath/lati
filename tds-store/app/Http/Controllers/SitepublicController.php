@@ -2,13 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Image;
+use App\Models\Produit;
+use App\Models\SousCategorie;
 
 class SitepublicController extends Controller
 {
-    // public function header(){
+    public function produits(){
 
-    //     return view('layouts.partials.header', compact('categories'));
+        $tout_produits = Produit::paginate(8);
 
-    // }
+        return view ('site-public.produits.produit', compact('tout_produits'));
+
+    }
+
+    public function all_produit_par_sous_categorie($cat, $sous_cat){
+        $sous_categorie = SousCategorie::where('slug', $sous_cat)->first();
+        $sous_categories_produits = Produit::where('sous_categorie_id', $sous_categorie->id)->get();
+
+        return view ('site-public.produits.sous-categorie-produit', compact('cat', 'sous_cat' ,'sous_categories_produits'));
+
+    }
+
+    public function show_produit_par_sous_categorie($cat, $sous_cat, $pdt){
+        $produit = Produit::where('slug', $pdt)->first();
+        $images = Image::where('produit_id', $produit->id)->get();
+        $sous_categorie = SousCategorie::where('slug', $sous_cat)->first();
+        $sous_categories_produits = Produit::where('sous_categorie_id', $sous_categorie->id)->get();
+        // $total_stock = Stock::where('produit_id', $produit->quantite)->get();
+
+        return view ('site-public.produits.detail-produit', compact('produit', 'images', 'cat', 'sous_cat', 'sous_categories_produits' ));
+
+    }
+
+
+
+
 }

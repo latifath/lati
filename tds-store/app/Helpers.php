@@ -2,7 +2,6 @@
 use App\Models\Categorie;
 use App\Models\SousCategorie;
 use App\Models\Partenaire;
-// use App\Models\Produit;
 
 if (!function_exists('categorie_menu')) {
     function categorie_menu(){
@@ -26,11 +25,15 @@ if (!function_exists('partenaires_logo')) {
      }
 }
 
-
-
-// if(!function_exists('produits_menu')) {
-//      function produits_menu($id) {
-//          $produits = Produit:: where('sous_categorie_id', $id)->get();
-//          return $produits;
-//      }
-// }
+if (!function_exists('one_sous_categorie')) {
+     function one_sous_categorie($id) {
+     $sous_categorie = SousCategorie::where('id', $id)->first();
+     return $sous_categorie;
+     };
+}
+if (!function_exists('one_categorie')) {
+    function one_categorie($id) {
+        $categorie = Categorie:: where('id', $id)->first();
+        return $categorie;
+    }
+}

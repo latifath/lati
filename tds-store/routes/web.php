@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitepublicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,16 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('root_index');
+
+Route::get('/produits', [SitepublicController::class, 'produits'])->name('root_sitepublic_produits');
+
+Route::get('/{categorie}/{sous_categorie}', [SitepublicController::class, 'all_produit_par_sous_categorie'])->name('root_sitepublic_all_produit_par_sous_categorie');
+
+Route::get('/{categorie}/{sous_categorie}/{produit}', [SitepublicController::class, 'show_produit_par_sous_categorie'])->name('root_sitepublic_show_produit_par_sous_categorie');
+
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -24,3 +35,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/s-inscrire', function(){
+    return view('auth/user_register');
+});
+Route::get('/se-connecter', function(){
+    return view('auth/user_login');
+});
+

@@ -7,6 +7,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -23,25 +25,38 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    @yield('style')
 </head>
 
 <body>
+
 
     @include('layouts.partials.header')
 
     @yield('produit')
 
+    @yield('contenu')
+
+    @yield('page_produit')
+
+    @yield('detail_produit')
+
+    @yield('panier')
+
+    @yield('register')
+
+    @yield('login')
+
     @yield('newsletter')
 
     @yield('partenaire')
-
-    @yield('contenu')
 
 
     <!-- Footer Start -->
     @include('layouts.partials.footer')
     <!-- Footer End -->
 
+    @yield('js')
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

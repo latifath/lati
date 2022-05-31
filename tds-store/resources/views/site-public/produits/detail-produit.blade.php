@@ -1,0 +1,237 @@
+@extends('layouts.master')
+@section ('detail_produit')
+
+<!-- Page Header Start -->
+<div class="container-fluid bg-secondary mb-5 py-2 px-xl-5">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
+
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/"><i class="fa fa-home"></i></a></p>
+            <p class="text-muted px-1">/</p>
+            <p class="m-0">Détail Produit</p>
+        </div>
+    </div>
+</div>
+
+<!-- Page Header End -->
+<!-- Shop Detail Start -->
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-5 pb-5">
+            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner border" style="height: 400px;">
+                    <div class="carousel-item active">
+                        <img class="w-100 h-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="Image">
+                    </div>
+                    @foreach($images as $image)
+                    <div class="carousel-item">
+                        <img class="w-100 h-100" src="{{ $image->path }}" alt="Image">
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                    <i class="fa fa-2x fa-angle-left text-dark"></i>
+                </a>
+                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                    <i class="fa fa-2x fa-angle-right text-dark"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-7 pb-5">
+            <h3 class="font-weight-semi-bold">{{ $produit->nom}}</h3>
+            <div class="d-flex mb-3">
+                <div class="text-primary mr-2">
+                    <small class="fas fa-star"></small>
+                    <small class="fas fa-star"></small>
+                    <small class="fas fa-star"></small>
+                    <small class="fas fa-star-half-alt"></small>
+                    <small class="far fa-star"></small>
+                </div>
+                <small class="pt-1">(50 Reviews)</small>
+            </div>
+            <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }}</h3>
+            <form action="" method="POST">
+                @csrf
+                <div class="d-flex align-items-center mb-4 pt-2">
+                    <div class="input-group quantity mr-3" style="width: 130px;">
+                        <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-minus">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control bg-secondary text-center" value="1" name="quantite">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="addcart" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                </div>
+            </form>
+
+            <div class="d-flex">
+                <p class="text-dark font-weight-medium mb-0 mr-2">Total:</p>
+                <div class="d-inline-flex text-dark font-weight-medium mb-0 mr-2"> {{ $produit->quantite }}</div>
+
+            </div>
+
+            <div class="d-flex pt-2">
+                <p class="text-dark font-weight-medium mb-0 mr-2">Partager sur:</p>
+                <div class="d-inline-flex">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-pane-1">
+                    <h4 class="mb-3">Description du produit</h4>
+                    <p>{{ $produit->description }}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<!-- Shop Detail End -->
+
+
+<!-- Products Start -->
+<div class="container-fluid py-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Vous pourriez aussi aimer</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel related-carousel">
+                @foreach ($sous_categories_produits as $produit)
+                <div class="card product-item border-0">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">{{ $produit->nom }}</h6>
+                        <div class="d-flex justify-content-center">
+                            <h6>{{ $produit->prix }}</h6>
+                            <h6 class="text-muted ml-2"><del>{{ $produit->prix }}</del></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Voir les details</a>
+                        <a href="/panier" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Products End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+@endsection
+
+@section('newsletter')
+<!-- Subscribe Start -->
+<div class="container-fluid bg-secondary my-4">
+    <div class="row justify-content-md-center py-2 px-xl-5">
+        <div class="col-md-6 col-12 py-5">
+            <div class="text-center mb-2 pb-2">
+                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Restez à jour</span></h2>
+                <p>Inscrivez-vous pour recevoir les actualités de Tds-store !</p>
+            </div>
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-white p-4" placeholder="Entrez l'email...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-4">S'abonner</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Subscribe End -->
+@endsection
+
+@section('partenaire')
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel vendor-carousel">
+                @foreach (partenaires_logo() as $item)
+                <div class="vendor-item border p-4">
+                    <img src="{{ $item->logo }}" alt="">
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->
+@endsection
+
+@if(session()->has('cart'))
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> <i class="fa fa-exclamation" aria-hidden="true"></i> Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Produit ajouté au panier avec succès</h5>
+                    <hr>
+                    <p>Il y a {{ $cartCount }} @if($cartCount > 1) articles @else article
+                        @endif dans votre panier pour un total de <strong>{{ number_format($cartTotal, 2,
+        ',', ' ') }} FCFA TTC</strong> hors frais de port.</p>
+                    <p><em>Vous avez la possibilité de venir chercher vos produits sur place,
+                            dans ce cas vous cocherez la case correspondante lors de la confirmation de votre
+                            commande et aucun frais de port ne vous sera facturé.</em></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="{{ route('panier.index') }}" class="btn waves-effect waves-
+            light">
+                        <i class="material-icons left">check</i>
+                        Commander
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+@section('js')
+    <script>
+        @if(session()->has('cart'))
+            document.addEventListener('DOMContentLoaded', () => {
+            const instance = M.Modal.init(document.querySelector('.modal'));
+            instance.open();
+            });
+        @endif
+    </script>
+@endsection
