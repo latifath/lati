@@ -51,16 +51,16 @@
                 <small class="pt-1">(50 Reviews)</small>
             </div>
             <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }}</h3>
-            <form action="" method="POST">
+            <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                 @csrf
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
-                        <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-minus">
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
+                        <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                         <input type="text" class="form-control bg-secondary text-center" value="1" name="quantite">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus">
@@ -68,7 +68,7 @@
                             </button>
                         </div>
                     </div>
-                    <button type="submit" id="addcart" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                    <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
                 </div>
             </form>
 
@@ -137,7 +137,19 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Voir les details</a>
-                        <a href="/panier" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a>
+                        <form action="{{ route('root_create_panier', $produit) }}" method="POST">
+                            @csrf
+                            <div class="d-flex align-items-center mb-4 pt-2">
+                                <div class="input-group quantity mr-3" style="width: 130px;">
+                                    <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
+                                    <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
+
+                                </div>
+                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                            </div>
+                        </form>
+
+                        {{-- <a href="/panier" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> --}}
                     </div>
                 </div>
                 @endforeach

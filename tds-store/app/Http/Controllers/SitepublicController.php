@@ -25,6 +25,7 @@ class SitepublicController extends Controller
     }
 
     public function show_produit_par_sous_categorie($cat, $sous_cat, $pdt){
+
         $produit = Produit::where('slug', $pdt)->first();
         $images = Image::where('produit_id', $produit->id)->get();
         $sous_categorie = SousCategorie::where('slug', $sous_cat)->first();
