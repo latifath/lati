@@ -12,7 +12,6 @@
 </div>
 <!-- Page Header End -->
 
-
 <!-- Cart Start -->
 <div class="container-fluid pt-5">
 
@@ -32,7 +31,7 @@
                             <th>Prix</th>
                             <th>Quantité</th>
                             <th>Total</th>
-                            <th>Supprimé</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
@@ -44,7 +43,7 @@
                             <!-- On incrémente le total général par le total de chaque produit du panier -->
                             @php $total += $item['price'] * $item['quantity'] @endphp
                             <tr>
-                                <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> {{ $item['name'] }}</td>
+                                <td class="align-middle"><img src="" alt="" style="width: 50px;"> {{ $item['name'] }}</td>
                                 <td class="align-middle">{{ number_format($item['price'], 0, '.', ' ') }}</td>
                                 <td class="align-middle">
                                     <form action="{{ route('root_create_panier', $key) }}" method="POST">
@@ -64,7 +63,7 @@
                                         </div>
                                     </form>
                                 </td>
-                                <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.' ,' ')}}</td>
+                                <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}</td>
                                 <td class="align-middle">
                                     {{-- <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a> --}}
                                     <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a>
@@ -89,8 +88,8 @@
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Total</h6>
-                            <h6 class="font-weight-medium">{{ number_format($total),  0, '.', ' ' }}</h6>
+                            <h6 class="font-weight-medium">Sous-total</h6>
+                            <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }}</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Expédition</h6>
@@ -100,9 +99,9 @@
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">{{  number_format($total),  0, '.', ' '  }}</h5>
+                            <h5 class="font-weight-bold">{{  number_format($total,  0, '.', ' ' ) }}</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button>
+                        <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="container-fluid text-dark mt-5 pt-5"  style="background-color: {{ couleur1('$backgroundcolor_gris') }}">
         <div class="col-sm-12 pt-0" style="padding-left: 50px; display: flex;">
            <a href="" target="_blank" titre="facebook">
              <img src="{{ asset('assets/img/face.png') }}" width="30" height="25">

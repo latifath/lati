@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\SitepublicController;
 
 /*
@@ -32,7 +33,7 @@ Route::get('/panier/supprimer/{produit}', [PanierController::class, 'delete'])->
 
 Route::get('panier/vider', [PanierController::class, 'empty'])->name('root_empty_panier');
 
-
+Route::get('validation-commande', [CommandeController::class, 'valider_commande'])->name('root_site_public_validation_commande')->middleware('auth');
 
 
 
@@ -48,8 +49,8 @@ Route::middleware([
 
 Route::get('/s-inscrire', function(){
     return view('auth/user_register');
-});
+})->name('root_auth_user_register');
 Route::get('/se-connecter', function(){
     return view('auth/user_login');
-});
+})->name('root_auth_user_login');
 

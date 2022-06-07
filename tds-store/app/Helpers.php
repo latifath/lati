@@ -37,3 +37,24 @@ if (!function_exists('one_categorie')) {
         return $categorie;
     }
 }
+
+if(!function_exists('couleur1')) {
+    function couleur1() {
+         $backgroundcolor_gris = "#EDF1FF";
+         return $backgroundcolor_gris;
+    }
+}
+
+if(!function_exists('couleur2')) {
+    function couleur2() {
+         $backgroundcolor_marron = "#D19C97";
+         return $backgroundcolor_marron;
+    }
+}
+
+// if(!function_exists('couleur3')) {
+//     function couleur3() {
+//          $backgroundcolor_gris = "#EDF1FF";
+//          return $backgroundcolor_gris;
+//     }
+// }

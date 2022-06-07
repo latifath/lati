@@ -82,8 +82,8 @@
                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                         <h6 class="text-truncate mb-3">{{ $produit->nom}}</h6>
                                         <div class="d-flex justify-content-center">
-                                            <h6>{{ $produit->prix }}</h6>
-                                            <h6 class="text-muted ml-2"><del>{{ $produit->prix }}</del></h6>
+                                            <h6>{{ number_format($produit->prix, 0, '.', ' ') }}</h6>
+                                            <h6 class="text-muted ml-2"><del>{{ number_format($produit->prix, 0, '.', ' ') }}</del></h6>
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between bg-light border">
@@ -94,14 +94,9 @@
 
                                         <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                                             @csrf
-                                            <div class="d-flex align-items-center mb-4 pt-2">
-                                                <div class="input-group quantity mr-3" style="width: 130px;">
-                                                    <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
-                                                    <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
-
-                                                </div>
-                                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
-                                            </div>
+                                                <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
+                                                <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
+                                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
                                         </form>
 
                                         {{-- <a href="/panier" class="btn btn-sm text-dark p-0"><i
@@ -110,7 +105,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="container" style="padding-left: 530px;">
+                        <div class="container" style="align-item: center">
                             <a href="/produits" class="btn btn-info" role="button" style="background-color: #D19C97;
                                     border-color: #D19C97; color:black;">Voir plus</a>
                         </div>
@@ -124,7 +119,7 @@
 
 @section('newsletter')
     <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-4">
+    <div class="container-fluid my-4" style="background-color: {{ couleur1('$backgroundcolor_gris') }}">
         <div class="row justify-content-md-center py-2 px-xl-5">
             <div class="col-md-6 col-12 py-5">
                 <div class="text-center mb-2 pb-2">

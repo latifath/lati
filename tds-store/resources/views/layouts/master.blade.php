@@ -47,6 +47,8 @@
 
     @yield('login')
 
+    @yield('verifier')
+
     @yield('newsletter')
 
     @yield('partenaire')

@@ -25,7 +25,7 @@
                     </div>
                     @foreach($images as $image)
                     <div class="carousel-item">
-                        <img class="w-100 h-100" src="{{ $image->path }}" alt="Image">
+                        <img class="w-100 h-100" src="" alt="Image">
                     </div>
                     @endforeach
                 </div>
@@ -145,7 +145,8 @@
                                     <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
 
                                 </div>
-                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
+
                             </div>
                         </form>
 
