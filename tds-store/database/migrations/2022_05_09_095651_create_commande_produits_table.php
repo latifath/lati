@@ -18,7 +18,7 @@ class CreateCommandeProduitsTable extends Migration
             $table->integer('quantite');
             $table->float('prix');
             $table->integer('produit_id')->unsigned();
-            $table->foreign('produit_id')->references('id')->on('commandes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('commande_id')->unsigned();
             $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('panier')
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5">
+<div class="container-fluid mb-5" style='{{ couleur1() }}'>
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
         <div class="d-inline-flex">
             <p class="m-0"><a href="/"><i class="fa fa-home"></i></a></p>
@@ -21,7 +21,7 @@
 
             <div class="col-lg-8 table-responsive mb-5">
                 @if (session()->has('message'))
-                <div class="alert alert-info">{{ session('message') }}</div>
+                <div class="alert alert-info" >{{ session('message') }}</div>
                 @endif
                 <table class="table table-bordered text-center mb-0">
                     <a href="{{ route('root_empty_panier') }}" class="btn btn-primary float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
@@ -101,7 +101,7 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">{{  number_format($total,  0, '.', ' ' ) }}</h5>
                         </div>
-                        <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
+                        <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3" style="background-color: {{ couleur2('$backgroundcolor_marron') }}">Passer à la caisse</button></a>
                     </div>
                 </div>
             </div>

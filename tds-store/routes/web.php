@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\PayementController;
 use App\Http\Controllers\SitepublicController;
+use App\Http\Controllers\ValidationpayementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,17 @@ Route::get('panier/vider', [PanierController::class, 'empty'])->name('root_empty
 
 Route::get('validation-commande', [CommandeController::class, 'valider_commande'])->name('root_site_public_validation_commande')->middleware('auth');
 
+Route::post('validation-commande/create', [CommandeController::class, 'validation'])->name('root_site_public_validation');
 
+Route::get('validation-commmande/{id}/payer-la-commande', [CommandeController::class, 'payer_la_commande'])->name('root_site_public_payer_la_commande');
+
+Route::get('validation-commmande/{id}/commande-reçue', [PayementController::class, 'commande_recue'])->name('root_site_public_commande_recue');
+
+Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
+
+
+
+// Route::get('/p/{categorie}/{id}', [HomeController::class, 'showproduit'])->name('root_site_public_produit_detail_produit');
 
 Route::middleware([
     'auth:sanctum',
@@ -50,7 +62,7 @@ Route::middleware([
 Route::get('/s-inscrire', function(){
     return view('auth/user_register');
 })->name('root_auth_user_register');
+
 Route::get('/se-connecter', function(){
     return view('auth/user_login');
 })->name('root_auth_user_login');
-

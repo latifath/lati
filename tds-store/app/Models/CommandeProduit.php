@@ -9,7 +9,7 @@ class CommandeProduit extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'commande_id', 'produit_id', 'quantité', 'prix', 'created_at', 'updated_at'];
+    protected $fillable = [ 'commande_id', 'produit_id', 'quantite', 'prix', 'created_at', 'updated_at'];
 
     public function produit()
     {

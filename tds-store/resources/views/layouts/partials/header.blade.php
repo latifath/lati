@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row py-2 px-xl-5" style="font-size: 13.5px; background-color: {{ couleur1('$backgroundcolor_gris') }}">
+    <div class="row py-2 px-xl-5" style="font-size: 13.5px; {{ couleur1() }}">
         <div class="col-lg-6 d-none d-lg-block">
             <div class="d-inline-flex align-items-center">
                 <a class="text-dark px-1" href="">Des questions?</a>
@@ -18,29 +18,37 @@
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
-                @include('layouts.partials.connexion')
-                <span class="text-muted px-1">|</span>
-                @include('layouts.partials.inscription')
+                  {{-- pour voir si un utilisateur est connecté et affiché certaine chose  --}}
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+
+                        <x-jet-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            Déconnexion
+                        </x-jet-responsive-nav-link>
+                    </form>
+
+                    @else
+                        <a href="{{ route('root_auth_user_login') }}" class="nav-item nav-link  p-0 ">Connexion</a>
+
+                        @if (Route::has('register'))
+                            <span class="text-muted px-1">|</span>
+
+                            <a href="{{ route('root_auth_user_register') }}" class="nav-item nav-link  p-0 ">Inscription</a>
+                        @endif
+                @endauth
             </div>
         </div>
     </div>
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="/" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1"><img src="{{ asset('assets/img/tds.png') }}" alt=""</h1>
             </a>
         </div>
-        <div class="col-lg-6 col-6 text-left">
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Recherche">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </form>
+
+        <div class="col-lg-6 col-6 text-left p-0">
+            @livewire('search')
         </div>
         <div class="col-lg-3 col-6 text-right">
             <a href="" class="btn border">
@@ -48,7 +56,7 @@
                 <span class="badge">0</span>
             </a>
 
-            <a href="" class="btn border">
+            <a href="{{ route('root_show_panier') }}" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="badge">
                     @if(session()->has("panier"))

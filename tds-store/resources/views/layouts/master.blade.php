@@ -25,7 +25,13 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+
     @yield('style')
+
+    @livewireStyles
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </head>
 
 <body>
@@ -48,6 +54,10 @@
     @yield('login')
 
     @yield('verifier')
+
+    @yield('validation')
+
+    @yield('commande-reçue')
 
     @yield('newsletter')
 
@@ -76,6 +86,11 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @livewireScripts
+
+    @include('flashy::message');
+
 </body>
 
 </html>

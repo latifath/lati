@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{{ asset('assets/img/carousel-2.jpg') }}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('assets/img/tech.webp') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{{ asset('assets/img/carousel-2.jpg') }}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('assets/img/Digital.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order
@@ -106,8 +106,8 @@
                             </div>
                         @endforeach
                         <div class="container" style="align-item: center">
-                            <a href="/produits" class="btn btn-info" role="button" style="background-color: #D19C97;
-                                    border-color: #D19C97; color:black;">Voir plus</a>
+                            <a href="/produits" class="btn btn-info" role="button" style=" {{ couleur2() }};
+                                    border-color: {{ couleur2() }}; color:black;">Voir plus</a>
                         </div>
                         <!-- Products End -->
                     </div>
@@ -118,26 +118,7 @@
 @endsection
 
 @section('newsletter')
-    <!-- Subscribe Start -->
-    <div class="container-fluid my-4" style="background-color: {{ couleur1('$backgroundcolor_gris') }}">
-        <div class="row justify-content-md-center py-2 px-xl-5">
-            <div class="col-md-6 col-12 py-5">
-                <div class="text-center mb-2 pb-2">
-                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Restez à jour</span></h2>
-                    <p>Inscrivez-vous pour recevoir les actualités de Tds-store !</p>
-                </div>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-4" placeholder="Entrez l'email...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">S'abonner</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Subscribe End -->
+    @include('layouts.partials.newsletter')
 @endsection
 
 @section('partenaire')

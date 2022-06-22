@@ -18,6 +18,7 @@ class CreateCommandesTable extends Migration
             $table->timestamps();
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients');
+            $table-> string('status')->default('en cours');
         });
     }
 

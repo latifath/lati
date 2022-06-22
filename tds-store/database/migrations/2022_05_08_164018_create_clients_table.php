@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('pays');
             $table->string('rue');
             $table->string('ville');
-            $table->integer('code postal');
+            $table->integer('code_postal');
             $table->timestamps();
         });
     }

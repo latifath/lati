@@ -15,7 +15,7 @@ class CreatePaiementsTable extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('reference');
+            $table->string('reference');
             $table->float('montant');
             $table->string('type_paiement');
             $table->integer('commande_id')->unsigned();

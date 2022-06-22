@@ -1,5 +1,5 @@
     <!-- Footer Start -->
-    <div class="container-fluid text-dark mt-5 pt-5"  style="background-color: {{ couleur1('$backgroundcolor_gris') }}">
+    <div class="container-fluid text-dark mt-5 pt-5"  style="{{ couleur1() }}">
         <div class="col-sm-12 pt-0" style="padding-left: 50px; display: flex;">
            <a href="" target="_blank" titre="facebook">
              <img src="{{ asset('assets/img/face.png') }}" width="30" height="25">
@@ -18,8 +18,7 @@
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0">
                 <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Tdsstore</a>. All Rights Reserved. Designed
-                    by
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Tdsstore</a>. All Rights Reserved.
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
