@@ -1273,8 +1273,8 @@
 			width = $(this.options.responsiveBaseElement).width();
 		} else if (window.innerWidth) {
 			width = window.innerWidth;
-		} else if (document.documentElement && document.documentElement.clientWidth) {
-			width = document.documentElement.clientWidth;
+		} else if (document.documentElement && document.documentElement.AdresseClientWidth) {
+			width = document.documentElement.AdresseClientWidth;
 		} else {
 			console.warn('Can not detect viewport width.');
 		}
@@ -1620,8 +1620,8 @@
 			result.x = event.pageX;
 			result.y = event.pageY;
 		} else {
-			result.x = event.clientX;
-			result.y = event.clientY;
+			result.x = event.AdresseClientX;
+			result.y = event.AdresseClientY;
 		}
 
 		return result;

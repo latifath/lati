@@ -2,11 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\PayementController;
 use App\Http\Controllers\SitepublicController;
-use App\Http\Controllers\ValidationpayementController;
+use App\Http\Controllers\Admin\ClientAdminController;
+use App\Http\Controllers\Admin\HomeAdminController;
+use App\Http\Controllers\Client\HomeClientController;
+use App\Http\Controllers\Admin\CommandeAdminController;
+use App\Http\Controllers\Admin\PaiementAdminController;
+use App\Http\Controllers\Client\CommandeClientController;
+use App\Http\Controllers\Client\PaiementClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,23 +53,50 @@ Route::get('validation-commmande/{id}/commande-reçue', [PayementController::cla
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
 
 
+//Espace AdresseClient
 
-// Route::get('/p/{categorie}/{id}', [HomeController::class, 'showproduit'])->name('root_site_public_produit_detail_produit');
+Route::get('/espace-client', [HomeClientController::class, 'index'])->name('root_espace_client_index')->middleware('auth');
+
+Route::get('/espace-client/commande', [CommandeClientController:: class, 'index'])->name('root_espace_client_commande_index');
+
+Route ::get('/espace-client/commande/{id}/detail', [CommandeClientController:: class, 'show'])->name('root_espace_client_commande_show');
+
+Route::get('/espace-client/paiement', [PaiementClientController:: class, 'index'])->name('root_espace_client_paiement_index');
+
+
+// Espace admin
+Route::get('/espace-admin', [HomeAdminController::class, 'index'])->name('root_espace_admin_index')->middleware('auth');
+
+Route::get('/verification-auth', [SitepublicController::class, 'verification'])->name('root_verification_auth');
+
+Route::get('/espace-admin/clients', [ClientAdminController::class, 'index'])->name('root_espace_admin_clients_index');
+
+Route::get('espace-admin/clients/supprimer/{id}', [ClientAdminController::class, 'delete'])->name('root_delete_clients');
+
+Route::get('/espace-admin/clients/{id}/detail', [ClientAdminController::class, 'show'])->name('root_espace_admin_clients_show');
+
+Route::get('espace-admin/paiements', [PaiementAdminController::class, 'index'])->name('root_espace_admin_paiements_index');
+
+Route::get('espace-admin/paiements/{id}', [PaiementAdminController::class, 'show'])->name('root_espace_admin_paiements_show');
+
+Route::get('/tableau', function() {
+    return view('espace-client/gestion');
+})->name('root_espace_client_gestion');
+
+// End espace AdresseClient
+
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+    ])->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->name('dashboard');
+    });
 
-Route::get('/s-inscrire', function(){
-    return view('auth/user_register');
-})->name('root_auth_user_register');
 
-Route::get('/se-connecter', function(){
-    return view('auth/user_login');
-})->name('root_auth_user_login');
+Route::get('se-connecter', [UserController::class, 'connexion'])->name('root_auth_user_login')->middleware("guest");
+Route::get('s-inscrire', [UserController::class, 'inscription'])->name('root_auth_user_register')->middleware("guest");
+Route::get('se-deconnecter', [UserController::class, 'deconnexion'])->name('root_deconnexion');

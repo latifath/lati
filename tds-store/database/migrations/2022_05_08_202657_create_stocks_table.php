@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration
             $table->integer('quantite');
             $table->timestamps();
             $table->integer('produit_id')->unsigned();
-            $table->foreign('produit_id')->references('id')->on('produits');
+            $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             
         });
     }

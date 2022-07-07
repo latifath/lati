@@ -28,6 +28,12 @@
 
     @yield('style')
 
+    <style>
+        .tx:hover{
+            color: #fff !important;
+        }
+    </style>
+
     @livewireStyles
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -71,7 +77,7 @@
     @yield('js')
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <a href="#" class="btn btn-primary back-to-top tx"><i class="fa fa-angle-double-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
@@ -89,7 +95,7 @@
 
     @livewireScripts
 
-    @include('flashy::message');
+    @include('flashy::message')
 
 </body>
 

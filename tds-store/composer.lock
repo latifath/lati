@@ -901,16 +901,16 @@
                 "guzzlehttp/promises": "^1.5",
                 "guzzlehttp/psr7": "^1.8.3 || ^2.1",
                 "php": "^7.2.5 || ^8.0",
-                "psr/http-client": "^1.0",
+                "psr/http-AdresseClient": "^1.0",
                 "symfony/deprecation-contracts": "^2.2 || ^3.0"
             },
             "provide": {
-                "psr/http-client-implementation": "1.0"
+                "psr/http-AdresseClient-implementation": "1.0"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.4.1",
                 "ext-curl": "*",
-                "php-http/client-integration-tests": "^3.0",
+                "php-http/AdresseClient-integration-tests": "^3.0",
                 "phpunit/phpunit": "^8.5.5 || ^9.3.5",
                 "psr/log": "^1.1 || ^2.0 || ^3.0"
             },
@@ -974,13 +974,13 @@
                     "homepage": "https://github.com/Tobion"
                 }
             ],
-            "description": "Guzzle is a PHP HTTP client library",
+            "description": "Guzzle is a PHP HTTP AdresseClient library",
             "keywords": [
-                "client",
+                "AdresseClient",
                 "curl",
                 "framework",
                 "http",
-                "http client",
+                "http AdresseClient",
                 "psr-18",
                 "psr-7",
                 "rest",
@@ -1557,7 +1557,7 @@
                 "ext-redis": "Required to use the Redis cache and queue drivers (^4.0|^5.0).",
                 "fakerphp/faker": "Required to use the eloquent factory builder (^1.9.1).",
                 "filp/whoops": "Required for friendly error pages in development (^2.14.3).",
-                "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules (^6.5.5|^7.0.1).",
+                "guzzlehttp/guzzle": "Required to use the HTTP AdresseClient, Mailgun mail driver and the ping methods on schedules (^6.5.5|^7.0.1).",
                 "laravel/tinker": "Required to use the tinker console command (^2.0).",
                 "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^1.0).",
                 "league/flysystem-cached-adapter": "Required to use the Flysystem cache (^1.0).",
@@ -2439,7 +2439,7 @@
             "suggest": {
                 "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-                "elasticsearch/elasticsearch": "Allow sending log messages to an Elasticsearch server via official client",
+                "elasticsearch/elasticsearch": "Allow sending log messages to an Elasticsearch server via official AdresseClient",
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-curl": "Required to send log messages using the IFTTTHandler, the LogglyHandler, the SendGridHandler, the SlackWebhookHandler or the TelegramBotHandler",
                 "ext-mbstring": "Allow to work properly with unicode symbols",
@@ -3152,16 +3152,16 @@
             "time": "2019-01-08T18:20:26+00:00"
         },
         {
-            "name": "psr/http-client",
+            "name": "psr/http-AdresseClient",
             "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/http-client.git",
+                "url": "https://github.com/php-fig/http-AdresseClient.git",
                 "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-client/zipball/2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
+                "url": "https://api.github.com/repos/php-fig/http-AdresseClient/zipball/2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
                 "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
                 "shasum": ""
             },
@@ -3177,7 +3177,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Psr\\Http\\Client\\": "src/"
+                    "Psr\\Http\\AdresseClient\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -3190,16 +3190,16 @@
                     "homepage": "http://www.php-fig.org/"
                 }
             ],
-            "description": "Common interface for HTTP clients",
-            "homepage": "https://github.com/php-fig/http-client",
+            "description": "Common interface for HTTP AdresseClients",
+            "homepage": "https://github.com/php-fig/http-AdresseClient",
             "keywords": [
                 "http",
-                "http-client",
+                "http-AdresseClient",
                 "psr",
                 "psr-18"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-client/tree/master"
+                "source": "https://github.com/php-fig/http-AdresseClient/tree/master"
             },
             "time": "2020-06-29T06:28:15+00:00"
         },
@@ -4421,7 +4421,7 @@
                 "symfony/dependency-injection": "<5.3",
                 "symfony/doctrine-bridge": "<5.0",
                 "symfony/form": "<5.0",
-                "symfony/http-client": "<5.0",
+                "symfony/http-AdresseClient": "<5.0",
                 "symfony/mailer": "<5.0",
                 "symfony/messenger": "<5.0",
                 "symfony/translation": "<5.0",
@@ -4442,7 +4442,7 @@
                 "symfony/dom-crawler": "^4.4|^5.0|^6.0",
                 "symfony/expression-language": "^4.4|^5.0|^6.0",
                 "symfony/finder": "^4.4|^5.0|^6.0",
-                "symfony/http-client-contracts": "^1.1|^2|^3",
+                "symfony/http-AdresseClient-contracts": "^1.1|^2|^3",
                 "symfony/process": "^4.4|^5.0|^6.0",
                 "symfony/routing": "^4.4|^5.0|^6.0",
                 "symfony/stopwatch": "^4.4|^5.0|^6.0",
@@ -5662,7 +5662,7 @@
             },
             "require-dev": {
                 "symfony/error-handler": "^4.4|^5.0|^6.0",
-                "symfony/http-client": "^4.4|^5.0|^6.0",
+                "symfony/http-AdresseClient": "^4.4|^5.0|^6.0",
                 "symfony/translation-contracts": "^1.1|^2",
                 "symfony/var-exporter": "^4.4|^5.0|^6.0"
             },
@@ -5759,7 +5759,7 @@
                 "symfony/console": "^5.4|^6.0",
                 "symfony/dependency-injection": "^5.0|^6.0",
                 "symfony/finder": "^4.4|^5.0|^6.0",
-                "symfony/http-client-contracts": "^1.1|^2.0|^3.0",
+                "symfony/http-AdresseClient-contracts": "^1.1|^2.0|^3.0",
                 "symfony/http-kernel": "^5.0|^6.0",
                 "symfony/intl": "^4.4|^5.0|^6.0",
                 "symfony/polyfill-intl-icu": "^1.21",
@@ -6323,16 +6323,16 @@
             "time": "2022-03-03T08:28:38+00:00"
         },
         {
-            "name": "facade/flare-client-php",
+            "name": "facade/flare-AdresseClient-php",
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facade/flare-client-php.git",
+                "url": "https://github.com/facade/flare-AdresseClient-php.git",
                 "reference": "b2adf1512755637d0cef4f7d1b54301325ac78ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/flare-client-php/zipball/b2adf1512755637d0cef4f7d1b54301325ac78ed",
+                "url": "https://api.github.com/repos/facade/flare-AdresseClient-php/zipball/b2adf1512755637d0cef4f7d1b54301325ac78ed",
                 "reference": "b2adf1512755637d0cef4f7d1b54301325ac78ed",
                 "shasum": ""
             },
@@ -6360,7 +6360,7 @@
                     "src/helpers.php"
                 ],
                 "psr-4": {
-                    "Facade\\FlareClient\\": "src"
+                    "Facade\\FlareAdresseClient\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6368,7 +6368,7 @@
                 "MIT"
             ],
             "description": "Send PHP errors to Flare",
-            "homepage": "https://github.com/facade/flare-client-php",
+            "homepage": "https://github.com/facade/flare-AdresseClient-php",
             "keywords": [
                 "exception",
                 "facade",
@@ -6376,8 +6376,8 @@
                 "reporting"
             ],
             "support": {
-                "issues": "https://github.com/facade/flare-client-php/issues",
-                "source": "https://github.com/facade/flare-client-php/tree/1.9.1"
+                "issues": "https://github.com/facade/flare-AdresseClient-php/issues",
+                "source": "https://github.com/facade/flare-AdresseClient-php/tree/1.9.1"
             },
             "funding": [
                 {
@@ -6405,7 +6405,7 @@
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "facade/flare-client-php": "^1.9.1",
+                "facade/flare-AdresseClient-php": "^1.9.1",
                 "facade/ignition-contracts": "^1.0.2",
                 "illuminate/support": "^7.0|^8.0",
                 "monolog/monolog": "^2.0",

@@ -16,8 +16,10 @@ class CreateCommandesTable extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->integer('adresse_client_id')->unsigned();
+            $table->foreign('adresse_client_id')->references('id')->on('adresse_clients')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table-> string('status')->default('en cours');
         });
     }

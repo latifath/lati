@@ -1,10 +1,10 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        {{ __('Supprimer le compte') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and log out your active sessions on other browsers and devices.') }}
+        {{ __('Gérez et déconnectez-vous de vos sessions actives sur dautres navigateurs et appareils.') }}
     </x-slot>
 
     <x-slot name="content">

@@ -36,7 +36,8 @@ class SitepublicController extends Controller
 
     }
 
-
-
+    public function verification(){
+        return  view('/verification-auth');
+    }
 
 }

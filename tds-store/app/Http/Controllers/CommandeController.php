@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\AdresseClient;
 use App\Models\Commande;
 use App\Models\CommandeProduit;
 use Illuminate\Foundation\Auth\User;
@@ -12,17 +12,19 @@ class CommandeController extends Controller
 {
     public function valider_commande() {
         // pour recupérer les donnés dans la base d'un utilisateur connecté
-        $client = Client::where('email', auth()->user()->email)->first();
+        $adresseclient = AdresseClient::where('email', auth()->user()->email)->first();
 
-        return view("site-public.commandes.validation-commande", compact('client'));
+        return view("site-public.commandes.validation-commande", compact('adresseclient'));
     }
 
     public function validation(CreateValidationCommandeFormRequest $request) {
 
-        $clt = Client::firstOrCreate([
+        $clt = AdresseClient::Create(
+            [
             'nom'=> request('nom'),
             'prenom'=> request('prenom'),
             'email'=> request('email'),
+            'user_id' => auth()->user()->id,
             'telephone'=> request('telephone'),
             'pays'=> request('pays'),
             'rue'=> request('rue'),
@@ -33,9 +35,9 @@ class CommandeController extends Controller
 
         // creation de la commande
         $commande = Commande::create([
-            'client_id' => $clt->id,
-            'status' => 'en cours',
-            'email' => $clt->email,
+            'adresse_client_id' => $clt->id,
+            'user_id' => auth()->user()->id,
+            'status' => 'attente paiement',
         ]);
         //    creation et ajout d'information dans le champs commandeProduit
 

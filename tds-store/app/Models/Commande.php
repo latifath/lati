@@ -9,20 +9,25 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['client_id', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['adresse_client_id', 'status', 'user_id', 'created_at', 'updated_at'];
 
     public function paiements()
     {
     return $this->hasMany(Paiement::class);
     }
 
-    public function client()
+    public function adresse_client()
     {
-    return $this->belongsTo(Client::class);
+    return $this->belongsTo(AdresseClient::class);
     }
 
     public function commande_produits()
     {
     return $this->hasMany(CommandeProduit::class);
+    }
+
+    public function user()
+    {
+    return $this->belongsTo(User::class);
     }
 }

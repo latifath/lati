@@ -17,6 +17,10 @@ class PayementController extends Controller
             'type_paiement' => 'KKIAPAY',
         ]);
 
+        $commande->Update([
+            "status" => 'en cours',
+        ]);
+
         return view('site-public.commandes.commande-recue', compact('commande'));
     }
 

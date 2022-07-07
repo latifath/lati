@@ -20,7 +20,7 @@ class Produit extends Model
             ];
     }
 
-    protected $fillable = [ 'souscategorie_id', 'nom', 'description', 'slug', 'quantite', 'prix', 'created_at', 'updated_at' ];
+    protected $fillable = [ 'sous_categorie_id', 'nom', 'description', 'slug', 'quantite', 'prix', 'created_at', 'updated_at' ];
 
     public function promotions()
     {

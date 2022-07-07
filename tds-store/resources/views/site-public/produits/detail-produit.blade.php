@@ -2,13 +2,13 @@
 @section ('detail_produit')
 
 <!-- Page Header Start -->
-<div class="container-fluid bg-secondary mb-5 py-2 px-xl-5">
+<div class="container-fluid mb-5 py-2 px-xl-5" style="{{ couleur_background_1() }}">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
 
         <div class="d-inline-flex">
-            <p class="m-0"><a href="/"><i class="fa fa-home"></i></a></p>
-            <p class="text-muted px-1">/</p>
-            <p class="m-0">Détail Produit</p>
+            <p class="m-0"><a href="/"><i class="fa fa-home" style="{{ couleur_blanche() }}"></i></a></p>
+            <p class="text-muted px-1" style="{{ couleur_blanche() }}">/</p>
+            <p class="m-0" style="{{ couleur_blanche() }}">Détail Produit</p>
         </div>
     </div>
 </div>
@@ -48,9 +48,9 @@
                     <small class="fas fa-star-half-alt"></small>
                     <small class="far fa-star"></small>
                 </div>
-                <small class="pt-1">(50 Reviews)</small>
+                <small class="pt-1"></small>
             </div>
-            <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }}</h3>
+            <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }} FCFA</h3>
             <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                 @csrf
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -68,7 +68,7 @@
                             </button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                    <button type="submit" class="btn btn-primary tx px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
                 </div>
             </form>
 
@@ -102,7 +102,7 @@
             </div>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3">Description du produit</h4>
+                    <h4 class="mb-3" style="{{ couleur_text_2() }}">Description du produit</h4>
                     <p>{{ $produit->description }}</p>
                 </div>
 
@@ -118,7 +118,7 @@
 <!-- Products Start -->
 <div class="container-fluid py-5">
     <div class="text-center mb-4">
-        <h2 class="section-title px-5"><span class="px-2">Vous pourriez aussi aimer</span></h2>
+        <h2 class="section-title px-5"><span class="px-2" style="{{ couleur_text_2() }}">Vous pourriez aussi aimer</span></h2>
     </div>
     <div class="row px-xl-5">
         <div class="col">
@@ -135,17 +135,17 @@
                             <h6 class="text-muted ml-2"><del>{{ $produit->prix }}</del></h6>
                         </div>
                     </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Voir les details</a>
+                    <div class="card-footer d-flex justify-content-between bg-light border" style="m-auto">
+                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm p-0" style="color: #343a40;"><i class="fas fa-eye  mr-1" style="{{ couleur_text_2() }}"></i>Voir les details</a>
                         <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                             @csrf
-                            <div class="d-flex align-items-center mb-4 pt-2">
+                            <div class="d-flex align-items-center mb-4 pt-2" style="padding-right: 10px;">
                                 <div class="input-group quantity mr-3" style="width: 130px;">
                                     <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                                     <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
 
                                 </div>
-                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
+                                <button type="submit" class="btn btn-primary tx"><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
 
                             </div>
                         </form>
@@ -165,25 +165,7 @@
 @endsection
 
 @section('newsletter')
-<!-- Subscribe Start -->
-<div class="container-fluid bg-secondary my-4">
-    <div class="row justify-content-md-center py-2 px-xl-5">
-        <div class="col-md-6 col-12 py-5">
-            <div class="text-center mb-2 pb-2">
-                <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Restez à jour</span></h2>
-                <p>Inscrivez-vous pour recevoir les actualités de Tds-store !</p>
-            </div>
-            <form action="">
-                <div class="input-group">
-                    <input type="text" class="form-control border-white p-4" placeholder="Entrez l'email...">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary px-4">S'abonner</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@include('layouts.partials.newsletter')
 <!-- Subscribe End -->
 @endsection
 

@@ -9,7 +9,7 @@
                 <div class="container-fluid pt-2">
                     {{-- {{ dd('dd') }} --}}
                     <div class="text-center mb-4">
-                        <h2 class="section-title px-5"><span class="px-2">Nos produits</span></h2>
+                        <h2 class="section-title px-5"><span class="px-2"  style="{{ couleur_text_2() }}">Nos produits</span></h2>
                     </div>
                     <div class="row px-xl-5 pb-3">
                         @foreach ($sous_categories_produits as $produit)
@@ -23,23 +23,20 @@
                                         <h6 class="text-truncate mb-3">{{ $produit->nom}}</h6>
                                         <div class="d-flex justify-content-center">
                                             <h6>{{ number_format($produit->prix, 0, '.', ' ') }}</h6>
-                                            <h6 class="text-muted ml-2"><del>{{ number_format($produit->prix, 0, '.', ' ') }}</del></h6>
+                                            <h6 class="text-muted ml-2"><del>{{ number_format($produit->prix, 0, '.', ' ') }} FCFA</del></h6>
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm text-dark p-0"><i
-                                                class="fas fa-eye text-primary mr-1"></i>Voir
+                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm p-0" style="color: #343a40;"><i
+                                                class="fas fa-eye mr-1" style="{{ couleur_text_2() }}"></i>Voir
                                             les details
                                         </a>
                                         <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                                             @csrf
                                                     <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                                                     <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
-                                                <button type="submit" class="btn btn-primary "><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
+                                                <button type="submit" class="btn btn-primary tx"><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
                                         </form>
-
-                                        {{-- <a href="" class="btn btn-sm text-dark p-0"><i
-                                                class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> --}}
                                     </div>
                                 </div>
                             </div>
@@ -56,26 +53,7 @@
 @endsection
 
 @section('newsletter')
-    <!-- Subscribe Start -->
-    <div class="container-fluid bg-secondary my-4">
-        <div class="row justify-content-md-center py-2 px-xl-5">
-            <div class="col-md-6 col-12 py-5">
-                <div class="text-center mb-2 pb-2">
-                    <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Restez à jour</span></h2>
-                    <p>Inscrivez-vous pour recevoir les actualités de Tds-store !</p>
-                </div>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-4" placeholder="Entrez l'email...">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">S'abonner</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Subscribe End -->
+@include('layouts.partials.newsletter')
 @endsection
 
 @section('partenaire')

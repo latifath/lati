@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,11 +27,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        // View::composer(['layouts.master', 'site-public.produits.detail-produit'], function ($view) {
-        //     $view->with([
-        //     'cartCount' => Cart::getTotalQuantity(),
-        //     'cartTotal' => Cart::getTotal(),
-        //     ]);
-        // });
+        Blade::if('client', function () {
+            return auth()->user()->role === "client";
+        });
+
+        Blade::if('admin', function (){
+            return auth()->user()->role === 'admin';
+        });
     }
 }

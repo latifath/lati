@@ -19,7 +19,7 @@ class CreatePanierProduitsTable extends Migration
             $table->integer('panier_id')->unsigned();
             $table->foreign('panier_id')->references('id')->on('paniers')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('produit_id')->unsigned();
-            $table->foreign('produit_id')->references('id')->on('produits');
+            $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

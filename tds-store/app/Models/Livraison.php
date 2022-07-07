@@ -9,10 +9,10 @@ class Livraison extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['commande_id', 'client_id', 'created_at', 'updated_at'];
+    protected $fillable = ['commande_id', 'adresse_client_id', 'created_at', 'updated_at'];
 
-    public function client()
+    public function adresse_client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(AdresseClient::class);
     }
 }

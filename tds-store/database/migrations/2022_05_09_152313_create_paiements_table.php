@@ -19,7 +19,7 @@ class CreatePaiementsTable extends Migration
             $table->float('montant');
             $table->string('type_paiement');
             $table->integer('commande_id')->unsigned();
-            $table->foreign('commande_id')->references('id')->on('commandes');
+            $table->foreign('commande_id')->references('id')->on('commandes')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

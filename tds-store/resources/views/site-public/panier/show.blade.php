@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('panier')
 <!-- Page Header Start -->
-<div class="container-fluid mb-5" style='{{ couleur1() }}'>
+<div class="container-fluid mb-5" style="{{ couleur_background_1() }}">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
-        <div class="d-inline-flex">
-            <p class="m-0"><a href="/"><i class="fa fa-home"></i></a></p>
-                <p class="text-muted px-1">/</p>
+        <div class="d-inline-flex" style="{{ couleur_blanche() }}">
+            <p class="m-0" ><a href="/" style="{{ couleur_blanche() }}" ><i class="fa fa-home"></i></a></p>
+                <p class="text-muted px-1" style="{{ couleur_blanche() }}">/</p>
                 <p class="m-0">Panier</p>
         </div>
     </div>
@@ -16,6 +16,7 @@
 <div class="container-fluid pt-5">
 
     <div class="row px-xl-5">
+        @include('layouts.partials.sidebar')
 
         @if(session()->has("panier"))
 
@@ -23,9 +24,9 @@
                 @if (session()->has('message'))
                 <div class="alert alert-info" >{{ session('message') }}</div>
                 @endif
-                <table class="table table-bordered text-center mb-0">
-                    <a href="{{ route('root_empty_panier') }}" class="btn btn-primary float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
-                    <thead class="bg-secondary text-dark">
+                <table class="table table-bordered table-striped text-center mb-0">
+                    <a href="{{ route('root_empty_panier') }}" class="btn btn-primary tx float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
+                    <thead class="" style="color: dark; {{ couleur_principal() }}">
                         <tr>
                             <th>Produits</th>
                             <th>Prix</th>
@@ -35,7 +36,9 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        @php $total = 0 @endphp
+                        @php $total = 0 ;
+
+                         @endphp
 
                         <!-- On parcourt les produits du panier en session : session('basket') -->
                         @foreach (session("panier") as $key => $item)
@@ -66,45 +69,46 @@
                                 <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}</td>
                                 <td class="align-middle">
                                     {{-- <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a> --}}
-                                    <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a>
+                                    <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm " style="{{ couleur_background_2() }}"><i class="fa fa-times" style="{{ couleur_blanche() }}"></i></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div class="col-lg-4">
-                <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Code coupon">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Appliquer Coupon</button>
+                <div class="col-lg-8" style="margin-top: 60px;">
+                    <form class="mb-5" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control p-4" placeholder="Code coupon">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">Appliquer Coupon</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Récapitulatif du panier</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Sous-total</h6>
-                            <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }}</h6>
+                    </form>
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Récapitulatif du panier</h4>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Expédition</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Sous-total</h6>
+                                <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }} </h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Expédition</h6>
+                                <h6 class="font-weight-medium">$10</h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">{{  number_format($total,  0, '.', ' ' ) }}</h5>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">Total</h5>
+                                <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">{{  number_format($total,  0, '.', ' ' ) }} FCFA</h5>
+                            </div>
+                            <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
                         </div>
-                        <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3" style="background-color: {{ couleur2('$backgroundcolor_marron') }}">Passer à la caisse</button></a>
                     </div>
                 </div>
             </div>
+
         @else
             <p>Aucun produit</p>
         @endif
