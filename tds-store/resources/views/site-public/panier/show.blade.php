@@ -20,90 +20,94 @@
 
         @if(session()->has("panier"))
 
-            <div class="col-lg-8 table-responsive mb-5">
-                @if (session()->has('message'))
-                <div class="alert alert-info" >{{ session('message') }}</div>
-                @endif
-                <table class="table table-bordered table-striped text-center mb-0">
-                    <a href="{{ route('root_empty_panier') }}" class="btn btn-primary tx float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
-                    <thead class="" style="color: dark; {{ couleur_principal() }}">
-                        <tr>
-                            <th>Produits</th>
-                            <th>Prix</th>
-                            <th>Quantité</th>
-                            <th>Total</th>
-                            <th>Supprimer</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        @php $total = 0 ;
+            <div class="col-lg-9 table-responsive mb-5">
+                <div class="row">
+                    @if (session()->has('message'))
+                    <div class="alert alert-info" >{{ session('message') }}</div>
+                    @endif
+                    <div class="col-md-12 mb-5">
+                        <table class="table table-bordered table-striped text-center mb-0">
+                            <a href="{{ route('root_empty_panier') }}" class="btn btn-primary tx float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
+                            <thead class="" style="color: dark; {{ couleur_principal() }}">
+                                <tr>
+                                    <th>Produits</th>
+                                    <th>Prix</th>
+                                    <th>Quantité</th>
+                                    <th>Total</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                @php $total = 0 ;
 
-                         @endphp
+                                 @endphp
 
-                        <!-- On parcourt les produits du panier en session : session('basket') -->
-                        @foreach (session("panier") as $key => $item)
+                                <!-- On parcourt les produits du panier en session : session('basket') -->
+                                @foreach (session("panier") as $key => $item)
 
-                            <!-- On incrémente le total général par le total de chaque produit du panier -->
-                            @php $total += $item['price'] * $item['quantity'] @endphp
-                            <tr>
-                                <td class="align-middle"><img src="" alt="" style="width: 50px;"> {{ $item['name'] }}</td>
-                                <td class="align-middle">{{ number_format($item['price'], 0, '.', ' ') }}</td>
-                                <td class="align-middle">
-                                    <form action="{{ route('root_create_panier', $key) }}" method="POST">
-                                        @csrf
-                                        <div class="input-group quantity mx-auto" style="width: 100px;">
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-minus" >
-                                                <i class="fa fa-minus"></i>
-                                                </button>
-                                            </div>
-                                            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="{{ $item['quantity'] }}" name='quantite' >
-                                            <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-primary btn-plus" type="submit">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}</td>
-                                <td class="align-middle">
-                                    {{-- <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a> --}}
-                                    <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm " style="{{ couleur_background_2() }}"><i class="fa fa-times" style="{{ couleur_blanche() }}"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="col-lg-8" style="margin-top: 60px;">
-                    <form class="mb-5" action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-4" placeholder="Code coupon">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary">Appliquer Coupon</button>
+                                    <!-- On incrémente le total général par le total de chaque produit du panier -->
+                                    @php $total += $item['price'] * $item['quantity'] @endphp
+                                    <tr>
+                                        <td class="align-middle"><img src="" alt="" style="width: 50px;"> {{ $item['name'] }}</td>
+                                        <td class="align-middle">{{ number_format($item['price'], 0, '.', ' ') }}</td>
+                                        <td class="align-middle">
+                                            <form action="{{ route('root_create_panier', $key) }}" method="POST">
+                                                @csrf
+                                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-primary btn-minus" >
+                                                        <i class="fa fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="{{ $item['quantity'] }}" name='quantite' >
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-sm btn-primary btn-plus" type="submit">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}</td>
+                                        <td class="align-middle">
+                                            {{-- <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a> --}}
+                                            <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm " style="{{ couleur_background_2() }}"><i class="fa fa-times" style="{{ couleur_blanche() }}"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6 offset-md-6 mt-5">
+                        <form class="mb-3" action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control p-4" placeholder="Code coupon">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Appliquer Coupon</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                    <div class="card border-secondary mb-5">
-                        <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Récapitulatif du panier</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-3 pt-1">
-                                <h6 class="font-weight-medium">Sous-total</h6>
-                                <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }} </h6>
+                        </form>
+                        <div class="card border-secondary mb-5">
+                            <div class="card-header bg-secondary border-0">
+                                <h4 class="font-weight-semi-bold m-0">Récapitulatif du panier</h4>
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Expédition</h6>
-                                <h6 class="font-weight-medium">$10</h6>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-3 pt-1">
+                                    <h6 class="font-weight-medium">Sous-total</h6>
+                                    <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }} </h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="font-weight-medium">Expédition</h6>
+                                    <h6 class="font-weight-medium">$10</h6>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer border-secondary bg-transparent">
-                            <div class="d-flex justify-content-between mt-2">
-                                <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">Total</h5>
-                                <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">{{  number_format($total,  0, '.', ' ' ) }} FCFA</h5>
+                            <div class="card-footer border-secondary bg-transparent">
+                                <div class="d-flex justify-content-between mt-2">
+                                    <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">Total</h5>
+                                    <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">{{  number_format($total,  0, '.', ' ' ) }} FCFA</h5>
+                                </div>
+                                <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
                             </div>
-                            <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
                         </div>
                     </div>
                 </div>

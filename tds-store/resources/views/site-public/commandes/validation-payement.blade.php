@@ -12,8 +12,10 @@
         </div>
     </div>
     <!-- Page Header End -->
-
-    <div class="col-sm-6 offset-sm-3">
+    <div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        @include('layouts.partials.sidebar')
+    <div class="col-md-8 col-lg-8 ">
             <table class="table table-bordered text-center">
                 <thead  style="color: dark; {{ couleur_principal() }}">
                     <tr>
@@ -36,16 +38,28 @@
             <div class="col-md-12">
                 <button class="btn btn-primary my-3 py-3">Annuler la commande</button>
 
-                <button class="kkiapay-button btn btn-primary my-3 py-3">Procéder au paiement</button>
+                @if ($type_paiement == "momo")
+                    <button class="kkiapay-button btn btn-primary my-3 py-3">Procéder au paiement</button>
+                @elseif($type_paiement ==  "carte_bancaire")
+                    <button class="kkiapay-button btn btn-primary my-3 py-3">Procéder au paiement</button>
+                @elseif($type_paiement ==  "paypal")
+                    <button class="kkiapay-button btn btn-primary my-3 py-3">PayPal</button>
+                @elseif($type_paiement ==  "livraison")
+                <a href="{{ route('root_site_public_commande_recue', [$commande->id, $type_paiement])  }}">
+                    <button class="btn btn-primary my-3 py-3 px-4"> Continuez</button>
+                </a>
+                @endif
             </div>
         </div>
+    </div>
+    </div>
     </div>
 @endsection
 
 @section('js')
     {{-- <script src="https://cdn.kkiapay.me/k.js"></script> --}}
     <script amount="{{ $total }}"
-        callback="http://127.0.0.1:8000/validation-commmande/{{ $commande->id }}/commande-reçue"
+        callback="http://127.0.0.1:8000/validation-commmande/{{ $commande->id }}/commande-reçue/type-paiement-{{ $type_paiement }}"
         data=""
         url="https://technodatasolutions.bj/img/logo.png"
         position="center"

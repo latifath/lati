@@ -46,11 +46,15 @@ Route::get('validation-commande', [CommandeController::class, 'valider_commande'
 
 Route::post('validation-commande/create', [CommandeController::class, 'validation'])->name('root_site_public_validation');
 
-Route::get('validation-commmande/{id}/payer-la-commande', [CommandeController::class, 'payer_la_commande'])->name('root_site_public_payer_la_commande');
+// Route::get('validation-commande/confirmation', [CommandeController::class, 'confirmation'])->name('root_site_public__confirmation');
 
-Route::get('validation-commmande/{id}/commande-reçue', [PayementController::class, 'commande_recue'])->name('root_site_public_commande_recue');
+Route::get('validation-commmande/{id}/payer-la-commande/type-paiement-{payment}', [CommandeController::class, 'payer_la_commande'])->name('root_site_public_payer_la_commande');
+
+Route::get('validation-commmande/{id}/commande-reçue/type-paiement-{payment}', [PayementController::class, 'commande_recue'])->name('root_site_public_commande_recue');
 
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
+
+Route::get('/facturation', [SitepublicController::class, 'facture'])->name('root_site_public_facture');
 
 
 //Espace AdresseClient
@@ -78,6 +82,7 @@ Route::get('/espace-admin/clients/{id}/detail', [ClientAdminController::class, '
 Route::get('espace-admin/paiements', [PaiementAdminController::class, 'index'])->name('root_espace_admin_paiements_index');
 
 Route::get('espace-admin/paiements/{id}', [PaiementAdminController::class, 'show'])->name('root_espace_admin_paiements_show');
+
 
 Route::get('/tableau', function() {
     return view('espace-client/gestion');

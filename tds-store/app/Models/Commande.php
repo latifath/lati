@@ -9,7 +9,7 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['adresse_client_id', 'status', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['adresse_client_id', 'adresse_livraison_id', 'status', 'user_id', 'created_at', 'updated_at'];
 
     public function paiements()
     {
@@ -29,5 +29,10 @@ class Commande extends Model
     public function user()
     {
     return $this->belongsTo(User::class);
+    }
+
+    public function adresse_livraison()
+    {
+    return $this->belongsTo(AdresseLivraison::class);
     }
 }

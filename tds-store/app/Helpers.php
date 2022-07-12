@@ -8,6 +8,7 @@ use App\Models\Partenaire;
 use App\Models\AdresseClient;
 use App\Models\SousCategorie;
 use App\Models\CommandeProduit;
+use App\Models\AdresseLivraison;
 
 
 if(!function_exists('couleur_text_1')) {
@@ -150,6 +151,13 @@ if(!function_exists('commande')){
         $commande = Commande::where('id', $id)->first();
         return $commande;
 
+    }
+}
+
+if(!function_exists('adresselivraison')) {
+    function adresselivraison($id) {
+        $adresselivraisons = AdresseLivraison::findOrfail($id);
+        return $adresselivraisons;
     }
 }
 

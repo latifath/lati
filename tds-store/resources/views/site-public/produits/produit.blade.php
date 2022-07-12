@@ -26,13 +26,13 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [one_categorie(one_sous_categorie($produit->sous_categorie_id)->categorie_id)->slug, one_sous_categorie($produit->sous_categorie_id)->slug, $produit->slug])}}" class="btn btn-sm p-0 mt-2" style="color:#ea0513;"><i
-                                                class="fas fa-eye text-primary mr-1"></i>Voir
+                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [one_categorie(one_sous_categorie($produit->sous_categorie_id)->categorie_id)->slug, one_sous_categorie($produit->sous_categorie_id)->slug, $produit->slug])}}" class="btn btn-sm p-0 mt-3" style="color: #343a40;"><i
+                                                class="fas fa-eye" style="{{ couleur_text_2() }}"></i>Voir
                                             les details
                                         </a>
                                         <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                                             @csrf
-                                            <div class=" mb-4 pt-2">
+                                            <div class=" mb-4 pt-2 mt-1">
                                                 <div class="input-group quantity mr-3" style="">
                                                     <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                                                     <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">

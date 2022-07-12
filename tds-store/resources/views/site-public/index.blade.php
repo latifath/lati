@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer d-flex justify-content-between bg-light border">
-                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [one_categorie(one_sous_categorie($produit->sous_categorie_id)->categorie_id)->slug, one_sous_categorie($produit->sous_categorie_id)->slug, $produit->slug])}}" class="btn btn-sm p-0" style="color: #343a40;"><i
+                                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [one_categorie(one_sous_categorie($produit->sous_categorie_id)->categorie_id)->slug, one_sous_categorie($produit->sous_categorie_id)->slug, $produit->slug])}}" class="btn btn-sm mt-1" style="color: #343a40;"><i
                                                 class="fas fa-eye mr-1" style="{{ couleur_text_2() }}"></i>Voir
                                             les details
                                         </a>

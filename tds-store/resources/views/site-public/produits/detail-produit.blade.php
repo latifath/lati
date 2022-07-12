@@ -17,102 +17,109 @@
 <!-- Shop Detail Start -->
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
-        <div class="col-lg-5 pb-5">
-            <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner border" style="height: 400px;">
-                    <div class="carousel-item active">
-                        <img class="w-100 h-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="Image">
-                    </div>
-                    @foreach($images as $image)
-                    <div class="carousel-item">
-                        <img class="w-100 h-100" src="" alt="Image">
-                    </div>
-                    @endforeach
-                </div>
-                <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                    <i class="fa fa-2x fa-angle-left text-dark"></i>
-                </a>
-                <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                    <i class="fa fa-2x fa-angle-right text-dark"></i>
-                </a>
-            </div>
-        </div>
+        @include('layouts.partials.sidebar')
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-4 pb-5">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner border" style="height: 400px;">
+                            <div class="carousel-item active">
+                                <img class="w-100 h-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="Image">
+                            </div>
+                            {{-- {{ dd($images) }} --}}
+                            {{-- @foreach($images as $image)
+                            @if ($image != " ")
+                            <div class="carousel-item">
+                                <img class="w-100 h-100" src="" alt="Image">
+                            @else
 
-        <div class="col-lg-7 pb-5">
-            <h3 class="font-weight-semi-bold">{{ $produit->nom}}</h3>
-            <div class="d-flex mb-3">
-                <div class="text-primary mr-2">
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star"></small>
-                    <small class="fas fa-star-half-alt"></small>
-                    <small class="far fa-star"></small>
-                </div>
-                <small class="pt-1"></small>
-            </div>
-            <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }} FCFA</h3>
-            <form action="{{ route('root_create_panier', $produit) }}" method="POST">
-                @csrf
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                            </div>
+                            @endforeach --}}
                         </div>
-                        <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
-                        <input type="text" class="form-control bg-secondary text-center" value="1" name="quantite">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
+                        <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+                            <i class="fa fa-2x fa-angle-left text-dark"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+                            <i class="fa fa-2x fa-angle-right text-dark"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 pb-5">
+                    <h3 class="font-weight-semi-bold">{{ $produit->nom}}</h3>
+                    <div class="d-flex mb-3">
+                        <div class="text-primary mr-2">
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star"></small>
+                            <small class="fas fa-star-half-alt"></small>
+                            <small class="far fa-star"></small>
+                        </div>
+                        <small class="pt-1"></small>
+                    </div>
+                    <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }} FCFA</h3>
+                    <form action="{{ route('root_create_panier', $produit) }}" method="POST">
+                        @csrf
+                        <div class="d-flex align-items-center mb-4 pt-2">
+                            <div class="input-group quantity mr-3" style="width: 130px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary btn-minus">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
+                                <input type="text" class="form-control bg-secondary text-center" value="1" name="quantite">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary btn-plus">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary tx px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
+                        </div>
+                    </form>
+
+                    <div class="d-flex">
+                        <p class="text-dark font-weight-medium mb-0 mr-2">Total:</p>
+                        <div class="d-inline-flex text-dark font-weight-medium mb-0 mr-2"> {{ $produit->quantite }}</div>
+
+                    </div>
+
+                    <div class="d-flex pt-2">
+                        <p class="text-dark font-weight-medium mb-0 mr-2">Partager sur:</p>
+                        <div class="d-inline-flex">
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary tx px-3"><i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier</button>
                 </div>
-            </form>
-
-            <div class="d-flex">
-                <p class="text-dark font-weight-medium mb-0 mr-2">Total:</p>
-                <div class="d-inline-flex text-dark font-weight-medium mb-0 mr-2"> {{ $produit->quantite }}</div>
-
             </div>
 
-            <div class="d-flex pt-2">
-                <p class="text-dark font-weight-medium mb-0 mr-2">Partager sur:</p>
-                <div class="d-inline-flex">
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-dark px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+            <div class="col-12 pt-0">
+                <div class="nav nav-tabs justify-content-center border-secondary mb-4">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pane-1">
+                        <h4 class="mb-3" style="{{ couleur_text_2() }}">Description du produit</h4>
+                        <p>{{ $produit->description }}</p>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row px-xl-5">
-        <div class="col">
-            <div class="nav nav-tabs justify-content-center border-secondary mb-4">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
-            </div>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tab-pane-1">
-                    <h4 class="mb-3" style="{{ couleur_text_2() }}">Description du produit</h4>
-                    <p>{{ $produit->description }}</p>
-                </div>
 
-            </div>
-        </div>
     </div>
 </div>
 
-</div>
-<!-- Shop Detail End -->
 
 
 <!-- Products Start -->
@@ -136,21 +143,14 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border" style="m-auto">
-                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm p-0" style="color: #343a40;"><i class="fas fa-eye  mr-1" style="{{ couleur_text_2() }}"></i>Voir les details</a>
+                        <a href="{{ route('root_sitepublic_show_produit_par_sous_categorie', [$cat, $sous_cat, $produit->slug])}}" class="btn btn-sm p-0 mt-2" style="color: #343a40;"><i class="fas fa-eye  mr-1" style="{{ couleur_text_2() }}"></i>Voir les details</a>
                         <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                             @csrf
-                            <div class="d-flex align-items-center mb-4 pt-2" style="padding-right: 10px;">
-                                <div class="input-group quantity mr-3" style="width: 130px;">
                                     <input type="hidden" id="id" name="id" value="{{ $produit->id }}">
                                     <input type="hidden" class="form-control bg-secondary text-center" value="1" name="quantite">
-
-                                </div>
                                 <button type="submit" class="btn btn-primary tx"><i class="fa fa-shopping-cart mr-1"></i> Ajouter</button>
 
-                            </div>
                         </form>
-
-                        {{-- <a href="/panier" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> --}}
                     </div>
                 </div>
                 @endforeach

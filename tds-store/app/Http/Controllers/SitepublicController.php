@@ -40,4 +40,7 @@ class SitepublicController extends Controller
         return  view('/verification-auth');
     }
 
+    public function facture(){
+        return view('/facture');
+    }
 }

@@ -13,6 +13,11 @@
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
+    <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -38,10 +43,12 @@
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
 </head>
 
 <body>
-
+ @yield('head')
 
     @include('layouts.partials.header')
 
@@ -62,6 +69,8 @@
     @yield('verifier')
 
     @yield('validation')
+
+    @yield('confirmation-commande')
 
     @yield('commande-reçue')
 
@@ -92,11 +101,17 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    {{-- jqeuy js --}}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
+
+
 
     @livewireScripts
 
-    @include('flashy::message')
 
+    @include('flashy::message')
 </body>
 
 </html>

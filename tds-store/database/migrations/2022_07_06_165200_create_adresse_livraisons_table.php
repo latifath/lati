@@ -23,6 +23,16 @@ class CreateAdresseLivraisonsTable extends Migration
             $table->string('rue');
             $table->string('ville');
             $table->integer('code_postal');
+
+            // $table->string('nomLivraison')->nullable();
+            // $table->string('prenomLivraison')->nullable();
+            // $table->string('emailLivraison')->nullable();
+            // $table->integer('telephoneLivraison')->nullable();
+            // $table->string('paysLivraison')->nullable();
+            // $table->string('rueLivraison')->nullable();
+            // $table->string('villeLivraison')->nullable();
+            // $table->integer('code_postalLivraison')->nullable();
+
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-lg-6 text-center text-lg-right">
-            <div class="d-inline-flex align-items-center">
+            <div class="d-inline-flex">
                   {{-- pour voir si un utilisateur est connecté et affiché certaine chose  --}}
                 @auth
                     <form method="POST" action="{{ route('logout') }}" x-data>
