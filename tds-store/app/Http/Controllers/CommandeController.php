@@ -23,6 +23,10 @@ class CommandeController extends Controller
 
     public function validation(CreateValidationCommandeFormRequest $request) {
 
+        $request->validate([
+            'payment' => 'required',
+        ]);
+
         if(session('panier')){
 
 

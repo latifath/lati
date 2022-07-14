@@ -20,11 +20,12 @@
 <div class="col-sm-8">
     <div>
         <h3>Merci!</h3>
-        <p>Vous avez passé la commande avec succès.
+        <p class="mb-4">Vous avez passé la commande avec succès.
             Votre facture est disponible et téléchargeable.
+         <a href="{{ route('root_site_public_facture', [$commande, $type_paiement]) }}" class="btn btn-primary text-white tx"style="float: right; margin-bottom: 10px;" role="button">Facture</a>
+         <a href="#" class="btn btn-primary text-white tx"style="float: right; margin-bottom: 10px; margin-right:10px;" role="button">Facture-mobile</a>
 
         </p>
-        <a href="{{ route('root_site_public_facture') }}" class="btn btn-primary text-white tx"style="float: right; margin-bottom: 10px;" role="button">Facture</a>
     </div>
     <table class="table table-bordered text-center">
         <thead style="color: dark; {{ couleur_principal() }}">

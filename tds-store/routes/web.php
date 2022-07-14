@@ -52,9 +52,9 @@ Route::get('validation-commmande/{id}/payer-la-commande/type-paiement-{payment}'
 
 Route::get('validation-commmande/{id}/commande-reçue/type-paiement-{payment}', [PayementController::class, 'commande_recue'])->name('root_site_public_commande_recue');
 
-Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
+Route::get('commande/{id}/type-paiement-{paiement}/facturation', [PayementController::class, 'facture'])->name('root_site_public_facture');
 
-Route::get('/facturation', [SitepublicController::class, 'facture'])->name('root_site_public_facture');
+Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
 
 
 //Espace AdresseClient

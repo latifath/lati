@@ -24,17 +24,20 @@
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border" style="height: 400px;">
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="Image">
+                                <img class="w-100 h-100" src="{{ $last_image->path }}" alt="Image">
                             </div>
-                            {{-- {{ dd($images) }} --}}
-                            {{-- @foreach($images as $image)
-                            @if ($image != " ")
-                            <div class="carousel-item">
-                                <img class="w-100 h-100" src="" alt="Image">
-                            @else
+                            @if ($images->count() > 0)
+                                @foreach($images as $image)
+                                    @if ($last_image->id != $image->id)
+                                    <div class="carousel-item">
+                                        <img class="w-100 h-100" src="{{ $image->path }}" alt="Image">
+                                    </div>
+                                    @else{
 
-                            </div>
-                            @endforeach --}}
+                                    }
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                         <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                             <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -133,7 +136,11 @@
                 @foreach ($sous_categories_produits as $produit)
                 <div class="card product-item border-0">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="{{ asset('assets/img/product-1.jpg') }}" alt="">
+                        @if (last_image_produit($produit->id) == "")
+                            <img class="img-fluid w-100" src="https://cdn.pixabay.com/photo/2022/05/10/11/12/tree-7186835__480.jpg" alt="">
+                        @else
+                            <img class="img-fluid w-100" src="{{ last_image_produit($produit->id)->path }}" alt="">
+                        @endif
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{ $produit->nom }}</h6>

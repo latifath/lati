@@ -31,7 +31,7 @@ class CreateValidationCommandeFormRequest extends FormRequest
             'pays'=> 'required',
             'rue'=> 'required|min:4',
             'ville'=> 'required|min:3',
-            'code_postal'=> 'required'
+            'code_postal'=> 'required',
 
         ];
     }

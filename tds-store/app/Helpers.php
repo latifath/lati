@@ -1,5 +1,6 @@
 <?php
 use App\Models\User;
+use App\Models\Image;
 use App\Models\Produit;
 use App\Models\Commande;
 use App\Models\Paiement;
@@ -168,3 +169,15 @@ if(!function_exists('adresselivraison')) {
 //     return $commandes;
 //     }
 // }
+
+if(!function_exists('exist_commande_paiement')) {
+    function exist_commande_paiement($id){
+        return Paiement::where('commande_id', $id)->first();
+    }
+}
+
+if(!function_exists(('last_image_produit'))){
+    function last_image_produit($id_produit){
+        return Image::where('produit_id', $id_produit)->first();
+    }
+}

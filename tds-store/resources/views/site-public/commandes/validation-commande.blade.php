@@ -137,11 +137,9 @@
 
 
                                     <div class="col-md-6 form-group">
-                                        <form id="login" onsubmit="process(event)">
                                         <label>Téléphone</label>
-                                        <input  id="phone" type="tel" class="form-control {{ $errors->has('telephoneLivraison') ? 'is-invalid' : '' }}" placeholder="" name="telephoneLivraison">
+                                        <input id="phone1 type=tel1" class="form-control {{ $errors->has('telephoneLivraison') ? 'is-invalid' : '' }}" placeholder="" name="telephoneLivraison">
                                         {!! $errors->first('telephoneLivraison', '<p class="text-danger">:message</p>') !!}
-                                        </form>
                                         <div class="alert alert-info" style="display: none;"></div>
                                     </div>
 
@@ -221,30 +219,31 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" value="carte_bancaire" name="payment" id="cart">
-                                            <label class="custom-control-label" for="cart">carte </label>
+                                            <input type="radio" class="custom-control-input {{ $errors->has('payment') ? 'is-invalid' : '' }}" value="carte_bancaire" name="payment" id="cart">
+                                            <label class="custom-control-label" for="cart">Carte Bancaire</label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" value="momo" name="payment" id="mobile">
+                                            <input type="radio" class="custom-control-input {{ $errors->has('payment') ? 'is-invalid' : '' }}" value="momo" name="payment" id="mobile">
                                             <label class="custom-control-label" for="mobile">Mobile Money</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                     <div class="form-group">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" value="paypal" name="payment" id="mobile">
-                                            <label class="custom-control-label" for="mobile">PayPal</label>
+                                            <input type="radio" class="custom-control-input {{ $errors->has('payment') ? 'is-invalid' : '' }}" value="paypal" name="payment" id="paypal">
+                                            <label class="custom-control-label" for="paypal">PayPal</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" value="livraison" name="payment" id="livraison">
+                                            <input type="radio" class="custom-control-input {{ $errors->has('payment') ? 'is-invalid' : '' }}" value="livraison" name="payment" id="livraison">
                                             <label class="custom-control-label" for="livraison">Paiement à la livraison</label>
                                         </div>
                                     </div>
+                                    {!! $errors->first('payment', '<p class="text-danger">:message</p>') !!}
                                 </div>
                                 <div class="card-footer border-secondary bg-transparent">
                                     <a href="{{ route('root_site_public_validation') }}"></a><button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Passer la commande</button>
@@ -309,9 +308,6 @@ function getIp(callback) {
      utilsScript:
        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
    });
-
-
-
 const info = document.querySelector(".alert-info");
 
 function process(event) {
@@ -322,6 +318,37 @@ function process(event) {
  info.style.display = "";
  info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
 }
+
+// function get1Ip(callback) {
+//  fetch('https://ipinfo.io/json?token=9299d29dc5c97f', { headers: { 'Accept': 'application/json' }})
+//    .then((resp) => resp.json())
+//    .catch(() => {
+//      return {
+//        country: 'us',
+//      };
+//    })
+//    .then((resp) => callback(resp.country));
+// }
+//    const phone1InputField = document.querySelector("#phone1");
+//    const phone1Input = window.intlTelInput(phone1InputField, {
+//      initialCountry: "auto",
+//      geoIpLookup: get1Ip,
+//      preferredCountries: ["côte-d'ivore", "gha", "togo", "fr"],
+//      utilsScript:
+//        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+//    });
+
+//    onst info = document.querySelector(".alert-info");
+
+// function process(event) {
+//  event.preventDefault();
+
+//  const phone1Number = phone1Input.get1Number();
+
+//  info.style.display = "";
+//  info.innerHTML = `Phone1 number in E.164 format: <strong>${phone1Number}</strong>`;
+// }
+
 </script>
 @endsection
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Produit;
+use App\Models\Commande;
+use App\Models\Paiement;
 use App\Models\SousCategorie;
 
 class SitepublicController extends Controller
@@ -28,11 +30,12 @@ class SitepublicController extends Controller
 
         $produit = Produit::where('slug', $pdt)->first();
         $images = Image::where('produit_id', $produit->id)->get();
+        $last_image = Image::where('produit_id', $produit->id)->first();
         $sous_categorie = SousCategorie::where('slug', $sous_cat)->first();
         $sous_categories_produits = Produit::where('sous_categorie_id', $sous_categorie->id)->get();
         // $total_stock = Stock::where('produit_id', $produit->quantite)->get();
 
-        return view ('site-public.produits.detail-produit', compact('produit', 'images', 'cat', 'sous_cat', 'sous_categories_produits' ));
+        return view ('site-public.produits.detail-produit', compact('produit', 'images', 'last_image', 'cat', 'sous_cat', 'sous_categories_produits' ));
 
     }
 
@@ -40,7 +43,5 @@ class SitepublicController extends Controller
         return  view('/verification-auth');
     }
 
-    public function facture(){
-        return view('/facture');
-    }
+
 }

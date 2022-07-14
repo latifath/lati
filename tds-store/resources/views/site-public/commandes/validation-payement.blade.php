@@ -1,23 +1,33 @@
 @extends('layouts.master')
+@section('style')
+style.color {
+    background-color: silver
+}
+@endsection
 
+@section('head')
+<script src="https://www.paypal.com/sdk/js?client-id=AUIH145OuUGKi0m4xp3aJuBpRn1TdOqKop0QiUD_cRo12VqQeIA2siBz0DEasrmL_eaO_PF2VfnHFqkl&currency=USD"></script>
+{{-- <script src="https://www.paypal.com/sdk/js?client-id=AUIH145OuUGKi0m4xp3aJuBpRn1TdOqKop0QiUD_cRo12VqQeIA2siBz0DEasrmL_eaO_PF2VfnHFqkl"></script> --}}
+
+@endsection
 @section('validation')
 <!-- Page Header Start -->
-    <div class="container-fluid mb-5" style='{{ couleur_background_1() }}'>
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="/" ><i class="fa fa-home" style="{{ couleur_blanche() }}"></i></a></p>
-                <p class="m-0 px-2" style="{{ couleur_blanche() }}">/</p>
-                <p class="m-0" style="{{ couleur_blanche() }}">Validation commande</p>
-            </div>
+<div class="container-fluid mb-5" style='{{ couleur_background_1() }}'>
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
+        <div class="d-inline-flex">
+            <p class="m-0"><a href="/"><i class="fa fa-home" style="{{ couleur_blanche() }}"></i></a></p>
+            <p class="m-0 px-2" style="{{ couleur_blanche() }}">/</p>
+            <p class="m-0" style="{{ couleur_blanche() }}">Validation commande</p>
         </div>
     </div>
-    <!-- Page Header End -->
-    <div class="container-fluid pt-5">
+</div>
+<!-- Page Header End -->
+<div class="container-fluid pt-5">
     <div class="row px-xl-5">
         @include('layouts.partials.sidebar')
-    <div class="col-md-8 col-lg-8 ">
+        <div class="col-md-8 col-lg-8">
             <table class="table table-bordered text-center">
-                <thead  style="color: dark; {{ couleur_principal() }}">
+                <thead style="color: dark; {{ couleur_principal() }}">
                     <tr>
                         <th>Identifiant commande</th>
                         <th>Date</th>
@@ -33,38 +43,67 @@
                 </tbody>
             </table>
 
-        <p class="pt-3">Merci pour votre commande, Cliquez sur le boutton <strong >Procéder au paiement</strong></p>
-        <div class="mb-4">
-            <div class="col-md-12">
-                <button class="btn btn-primary my-3 py-3">Annuler la commande</button>
+            <p class="pt-3">Merci pour votre commande, Cliquez sur le boutton <strong>Procéder au paiement</strong></p>
+            <div class="mb-4">
+                <div class="col-md-12">
+                    <button class="btn btn-primary my-3 py-3">Annuler la commande</button>
 
-                @if ($type_paiement == "momo")
+                    @if ($type_paiement == "momo")
                     <button class="kkiapay-button btn btn-primary my-3 py-3">Procéder au paiement</button>
-                @elseif($type_paiement ==  "carte_bancaire")
+                    @elseif($type_paiement == "carte_bancaire")
                     <button class="kkiapay-button btn btn-primary my-3 py-3">Procéder au paiement</button>
-                @elseif($type_paiement ==  "paypal")
-                    <button class="kkiapay-button btn btn-primary my-3 py-3">PayPal</button>
-                @elseif($type_paiement ==  "livraison")
-                <a href="{{ route('root_site_public_commande_recue', [$commande->id, $type_paiement])  }}">
-                    <button class="btn btn-primary my-3 py-3 px-4"> Continuez</button>
-                </a>
-                @endif
+                    @elseif($type_paiement == "paypal")
+                    <div id="paypal-button-container">
+                        {{-- <button class="paypal.Buttons btn btn-primary my-3 py-3">PayPal</button> --}}
+                    </div>
+                    @elseif($type_paiement == "livraison")
+                    <a href="{{ route('root_site_public_commande_recue', [$commande->id, $type_paiement])  }}">
+                        <button class="btn btn-primary my-3 py-3 px-4"> Continuez</button>
+                    </a>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
+</div>
 @endsection
 
 @section('js')
-    {{-- <script src="https://cdn.kkiapay.me/k.js"></script> --}}
-    <script amount="{{ $total }}"
-        callback="http://127.0.0.1:8000/validation-commmande/{{ $commande->id }}/commande-reçue/type-paiement-{{ $type_paiement }}"
-        data=""
-        url="https://technodatasolutions.bj/img/logo.png"
-        position="center"
-        theme="#0095ff"
-        sandbox="true"
-        key="08785180ecc811ec848227abfc492dc7"
-        src="https://cdn.kkiapay.me/k.js"></script>
-@stop
+{{-- <script src="https://cdn.kkiapay.me/k.js"></script> --}}
+<script amount="{{ $total }}" callback="http://127.0.0.1:8000/validation-commmande/{{ $commande->id }}/commande-reçue/type-paiement-{{ $type_paiement }}" data="" url="https://technodatasolutions.bj/img/logo.png" position="center" theme="#0095ff" sandbox="true" key="08785180ecc811ec848227abfc492dc7" src="https://cdn.kkiapay.me/k.js"></script>
+
+<script>
+    paypal.Buttons({
+        // Order is created on the server and the order id is returned
+        createOrder: (data, actions) => {
+          return fetch("/api/orders", {
+            method: "post",
+            // use the "body" param to optionally pass additional order information
+            // like product ids or amount
+          })
+          .then((response) => response.json())
+          .then((order) => order.id);
+        },
+        // Finalize the transaction on the server after payer approval
+        onApprove: (data, actions) => {
+          return fetch(`/api/orders/${data.orderID}/capture`, {
+            method: "post",
+          })
+          .then((response) => response.json())
+          .then((orderData) => {
+            // Successful capture! For dev/demo purposes:
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+          });
+        }
+      }).render('#paypal-button-container');
+
+
+</script>
+@endsection
+
