@@ -42,6 +42,7 @@
                 <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; {{ couleur_principal() }}">
                     <thead>
                     <tr>
+                        <th>N°</th>
                         <th>Id</th>
                         <th>Date</th>
                         <th>Statut</th>
@@ -53,18 +54,19 @@
                             $i = 1;
                         @endphp
                         @foreach ($commandes as $commande)
-
-                        <tr>
-                            <td>{{ $i }}</td>
-                            <td>{{ $commande->created_at}}</td>
-                            <td>{{ $commande->status }}</td>
-                            <td>
-                                <button id="btn_show_commande" class="btn btn-primary" data-id="{{ $commande->id }}" data-date="{{ $commande->created_at }}" data-nom = "{{ adresseclient($commande->adresse_client_id)->nom . " " . adresseclient($commande->adresse_client_id)->prenom }}" data-email = "{{ adresseclient($commande->adresse_client_id)->email }}" data-tel = "{{ adresseclient($commande->adresse_client_id)->telephone }}" data-ville_pays = "{{ adresseclient($commande->adresse_client_id)->ville. " " . adresseclient($commande->adresse_client_id)->pays }}" data-code_postal = "{{ adresseclient($commande->adresse_client_id)->code_postal }}" data-type = "{{ compte_com($commande->id)->type_paiement }}" data-montant = "{{ compte_com($commande->id)->montant }}" data-date_paiement = "{{ compte_com($commande->id)->created_at }}"><i class="fa fa-eye"></i> Voir </button>
-                            </td>
-                        </tr>
-                        @php
-                            $i++;
-                        @endphp
+                            <tr>
+                                <td>{{ $i }}</td>
+                                <td>{{ $commande->id }}</td>
+                                <td>{{ $commande->created_at}}</td>
+                                <td>{{ $commande->status }}</td>
+                                <td>
+                                    <button id="btn_show_commande" class="btn btn-primary" data-id="{{ $commande->id }}" data-date="{{ $commande->created_at }}" data-statut="{{ $commande->status }}" data-nom = "{{ $commande->adresse_client->nom . " " . adresseclient($commande->adresse_client_id)->prenom }}" data-email = "{{ adresseclient($commande->adresse_client_id)->email }}" data-tel = "{{ adresseclient($commande->adresse_client_id)->telephone }}" data-ville_pays = "{{ adresseclient($commande->adresse_client_id)->ville. " " . adresseclient($commande->adresse_client_id)->pays }}" data-code_postal = "{{ adresseclient($commande->adresse_client_id)->code_postal }}" data-date_paiement = "{{ account_commande($commande->id) ? account_commande($commande->id)->montant : '' }}" data-type = "{{ account_commande($commande->id) ? account_commande($commande->id)->type_paiement : '' }}" data-montant = "{{ account_commande($commande->id) ? account_commande($commande->id)->montant : '' }}" data-date_paiement = "{{ account_commande($commande->id) ? account_commande($commande->id)->created_at : '' }}"
+                                        ><i class="fa fa-eye"></i> Voir </button>
+                                </td>
+                            </tr>
+                            @php
+                                $i++;
+                            @endphp
                         @endforeach
                     </tbody>
                 </table>
@@ -95,7 +97,7 @@
                     </tr>
                 <tr>
                         <td>status</td>
-                        <td>payé</td>
+                        <td><span id='status_com'></span></td>
                     </tr>
                     <tr>
                         <td>Nom & prénom</td>
@@ -103,7 +105,7 @@
                     </tr>
                     <tr>
                         <td>E-mail</td>
-                        <td><span id='email'></span></td>
+                        <td><span id='email'><span></td>
                     </tr>
                     <tr>
                         <td>Téléphone</td>
@@ -146,29 +148,31 @@
     <script>
         $(document).on('click', '#btn_show_commande', function(){
 
-            var ID = $(this).attr('data-id');
+             var ID = $(this).attr('data-id');
             var date = $(this).attr('data-date');
+            var statut= $(this).attr('data-statut');
             var nom = $(this).attr('data-nom');
-            var email = $(this).attr('data-email');
-            var tel = $(this).attr('data-tel');
-            var ville_pays = $(this).attr('data-ville_pays');
-            var code_postal = $(this).attr('data-code_postal');
-            var type = $(this).attr('data-type');
-            var montant = $(this).attr('data-montant');
-            var date_paiement = $(this).attr('data-date_paiement');
+             var email = $(this).attr('data-email');
+             var tel = $(this).attr('data-tel');
+             var ville_pays = $(this).attr('data-ville_pays');
+             var code_postal = $(this).attr('data-code_postal');
+             var type = $(this).attr('data-type');
+             var montant = $(this).attr('data-montant');
+             var date_paiement = $(this).attr('data-date_paiement');
 
 
 
             $('#id_com').html(ID);
-            $('#date_com').html(date);
-            $('#nom_prenom').html(nom);
-            $('#email').html(email);
-            $('#tel').html(tel);
-            $('#ville_pays').html(ville_pays);
-            $('#code_postal').html(code_postal);
-            $('#type_paiement').html(type);
-            $('#montant').html(montant);
-            $('#date').html(date_paiement);
+             $('#date_com').html(date);
+             $('#status_com').html(statut);
+             $('#nom_prenom').html(nom);
+             $('#email').html(email);
+             $('#tel').html(tel);
+             $('#ville_pays').html(ville_pays);
+             $('#code_postal').html(code_postal);
+             $('#type_paiement').html(type);
+             $('#montant').html(montant);
+             $('#date').html(date_paiement);
 
 
 
@@ -176,3 +180,6 @@
         });
     </script>
 @endsection
+{{-- data-id="{{ $commande->id }}" data-date="{{ $commande->created_at }}" data-nom = "{{ adresseclient($commande->adresse_client_id)->nom . " " . adresseclient($commande->adresse_client_id)->prenom }}" data-email = "{{ adresseclient($commande->adresse_client_id)->email }}" data-tel = "{{ adresseclient($commande->adresse_client_id)->telephone }}" data-ville_pays = "{{ adresseclient($commande->adresse_client_id)->ville. " " . adresseclient($commande->adresse_client_id)->pays }}" data-code_postal = "{{ adresseclient($commande->adresse_client_id)->code_postal }}" data-type = "{{ compte_com($commande->id)->type_paiement }}" data-montant = "{{ compte_com($commande->id)->montant }}" data-date_paiement = "{{ compte_com($commande->id)->created_at }}" --}}
+{{-- account_commande --}}
+

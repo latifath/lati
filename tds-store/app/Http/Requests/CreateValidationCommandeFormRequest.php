@@ -27,7 +27,7 @@ class CreateValidationCommandeFormRequest extends FormRequest
             'nom'=> 'required',
             'prenom'=> 'required|min:3',
             'email'=> 'required|email',
-            'telephone'=> 'required|min:8|integer',
+            'telephone'=> 'required|min:8|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
             'pays'=> 'required',
             'rue'=> 'required|min:4',
             'ville'=> 'required|min:3',

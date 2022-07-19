@@ -46,6 +46,12 @@ Route::get('validation-commande', [CommandeController::class, 'valider_commande'
 
 Route::post('validation-commande/create', [CommandeController::class, 'validation'])->name('root_site_public_validation');
 
+Route::post('validation-commande/update/adresse-facturation', [CommandeController::class, 'edit_adresse_facturation'])->name('root_site_public_edit_adresse_facturation');
+
+Route::post('validation-commande/update/adresse-livraison', [CommandeController::class, 'edit_adresse_livraison'])->name('root_site_public_edit_adresse_livraison');
+
+Route::get('annulation-commande/{id}', [CommandeController::class, 'annuler_commande'])->name('root_site_public_annuler_commande');
+
 // Route::get('validation-commande/confirmation', [CommandeController::class, 'confirmation'])->name('root_site_public__confirmation');
 
 Route::get('validation-commmande/{id}/payer-la-commande/type-paiement-{payment}', [CommandeController::class, 'payer_la_commande'])->name('root_site_public_payer_la_commande');
@@ -55,6 +61,15 @@ Route::get('validation-commmande/{id}/commande-reçue/type-paiement-{payment}', 
 Route::get('commande/{id}/type-paiement-{paiement}/facturation', [PayementController::class, 'facture'])->name('root_site_public_facture');
 
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('root_site_public_newsletter');
+
+Route::post('/place-order', [PayementController::class, 'placeorder'])->name('root_site_public_placeorder');
+
+// paypal
+
+Route::get('create-transaction', [PayementController::class, 'createpaypaltransaction'])->name('root_create_payapl_transaction');
+Route::get('process-transaction', [PayementController::class, 'processpaypaltransaction'])->name('root_process_paypal_transaction');
+Route::get('success-transaction', [PayementController::class, 'successpaypaltransaction'])->name('root_success_paypal_transaction');
+Route::get('cancel-transaction', [PayementController::class, 'cancelpaypaltransaction'])->name('root_cancel_paypal_transaction');
 
 
 //Espace AdresseClient
@@ -75,13 +90,28 @@ Route::get('/verification-auth', [SitepublicController::class, 'verification'])-
 
 Route::get('/espace-admin/clients', [ClientAdminController::class, 'index'])->name('root_espace_admin_clients_index');
 
-Route::get('espace-admin/clients/supprimer/{id}', [ClientAdminController::class, 'delete'])->name('root_delete_clients');
+Route::delete('espace-admin/clients/supprimer/{id}', [ClientAdminController::class, 'delete'])->name('root_delete_clients');
 
 Route::get('/espace-admin/clients/{id}/detail', [ClientAdminController::class, 'show'])->name('root_espace_admin_clients_show');
 
 Route::get('espace-admin/paiements', [PaiementAdminController::class, 'index'])->name('root_espace_admin_paiements_index');
 
 Route::get('espace-admin/paiements/{id}', [PaiementAdminController::class, 'show'])->name('root_espace_admin_paiements_show');
+
+Route::get('espace-admin/commandes', [CommandeAdminController::class, 'index'])->name('root_espace_admin_commandes_index');
+
+Route::get('espace-admin/commandes/{id}/show', [CommandeAdminController::class, 'show'])->name('root_espace_admin_commandes_show');
+
+Route::get('espace-admin/client/newsletter', [HomeAdminController::class, 'news'])->name('root_espace_admin_commandes_news');
+
+Route::get('espace-admin/utilisateurs', [UserController::class, 'index_utilisateur'])->name('root_espace_admin_index_utilisateur');
+
+Route::post('espace-admin/utilisateur/update', [UserController::class, 'edit_utilisateur'])->name('root_espace_admin_edit_utilisateur');
+
+Route::delete('espace-admin/utilisateur/{id}/supprimer', [UserController::class, 'delete'])->name('root_espace_admin_delete_utilisateur');
+
+
+
 
 
 Route::get('/tableau', function() {

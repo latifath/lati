@@ -25,7 +25,7 @@
                     @if (session()->has('message'))
                     <div class="alert alert-info" >{{ session('message') }}</div>
                     @endif
-                    <div class="col-md-12 mb-5">
+                    <div class="col-lg-12 mb-5">
                         <table class="table table-bordered table-striped text-center mb-0">
                             <a href="{{ route('root_empty_panier') }}" class="btn btn-primary tx float-right mb-2"><i class="fa fa-trash" aria-hidden="true"></i> vider le panier</a>
                             <thead class="" style="color: dark; {{ couleur_principal() }}">
@@ -49,7 +49,7 @@
                                     @php $total += $item['price'] * $item['quantity'] @endphp
                                     <tr>
                                         <td class="align-middle"><img src="" alt="" style="width: 50px;"> {{ $item['name'] }}</td>
-                                        <td class="align-middle">{{ number_format($item['price'], 0, '.', ' ') }}</td>
+                                        <td class="align-middle">{{ number_format($item['price'], 0, '.', ' ') }}FCFA</td>
                                         <td class="align-middle">
                                             <form action="{{ route('root_create_panier', $key) }}" method="POST">
                                                 @csrf
@@ -68,7 +68,7 @@
                                                 </div>
                                             </form>
                                         </td>
-                                        <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}</td>
+                                        <td class="align-middle">{{ number_format($item['price'] * $item['quantity'], 0, '.', ' ') }}FCFA</td>
                                         <td class="align-middle">
                                             {{-- <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a> --}}
                                             <a href="{{ route('root_delete_panier', $key) }}" class="btn btn-sm " style="{{ couleur_background_2() }}"><i class="fa fa-times" style="{{ couleur_blanche() }}"></i></a>
@@ -94,7 +94,7 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-3 pt-1">
                                     <h6 class="font-weight-medium">Sous-total</h6>
-                                    <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }} </h6>
+                                    <h6 class="font-weight-medium">{{ number_format($total,  0, '.', ' ' ) }}FCFA </h6>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <h6 class="font-weight-medium">Expédition</h6>
@@ -104,7 +104,7 @@
                             <div class="card-footer border-secondary bg-transparent">
                                 <div class="d-flex justify-content-between mt-2">
                                     <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">Total</h5>
-                                    <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">{{  number_format($total,  0, '.', ' ' ) }} FCFA</h5>
+                                    <h5 class="font-weight-bold" style="{{ couleur_text_2() }}">{{  number_format($total,  0, '.', ' ' ) }}FCFA</h5>
                                 </div>
                                 <a href="{{ route('root_site_public_validation_commande') }}"><button class="btn btn-block btn-primary my-3 py-3">Passer à la caisse</button></a>
                             </div>

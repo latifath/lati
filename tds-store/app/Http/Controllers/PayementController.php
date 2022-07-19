@@ -49,4 +49,13 @@ class PayementController extends Controller
 
         return view('site-public.commandes.facture', compact('cmde', 'type_paiement', 'pay'));
     }
+
+    public function placeorder(Request $request){
+        // dd($request->input('payment_mode'));
+
+        if ($request->input('payment_mode') == "Paid by PayPal") {
+            return response()->json(['status' => 'Payer avec succes']);
+        }
+        return redirect('/')->with('status', 'Payer avec succes');
+    }
 }

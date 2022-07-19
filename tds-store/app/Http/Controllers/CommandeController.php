@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Mail\AdminMail;
 use App\Models\Commande;
 use App\Mail\CommandeMail;
+use Illuminate\Http\Request;
 use App\Models\AdresseClient;
 use App\Models\CommandeProduit;
 use App\Models\AdresseLivraison;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\CreateValidationCommandeFormRequest;
 
 class CommandeController extends Controller
 {
+
     public function valider_commande() {
         // pour recupérer les donnés dans la base d'un utilisateur connecté
         $adresseclient = AdresseClient::where('email', auth()->user()->email)->first();
@@ -115,4 +118,76 @@ class CommandeController extends Controller
         return view("site-public.commandes.validation-payement", compact('commande', 'total','type_paiement'));
 
     }
+
+    public function edit_adresse_facturation(Request $request) {
+
+        $request->validate([
+            'nom'=> 'required',
+            'prenom'=> 'required|min:3',
+            'email'=> 'required|email',
+            'telephone'=> 'required|min:8|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+            'pays'=> 'required',
+            'rue'=> 'required|min:4',
+            'ville'=> 'required|min:3',
+            'code_postal'=> 'required',
+        ]);
+
+        AdresseClient::findOrfail($request->id)->update([
+            "nom" => $request->nom,
+            "prenom" => $request->prenom,
+            "email" => $request->email,
+            "telephone" => $request->telephone,
+            "pays" => $request->pays,
+            "rue" => $request->rue,
+            "ville" => $request->ville,
+            "code_postal" => $request->code_postal,
+        ]);
+
+        flashy()->success('Modification reçue');
+        return redirect()->back();
+    }
+
+    public function edit_adresse_livraison(Request $request) {
+
+        $request->validate([
+            'nom'=> 'required',
+            'prenom'=> 'required|min:3',
+            'email'=> 'required|email',
+            'telephone'=> 'required|min:8|regex:/^([0-9\s\-\+\(\)]*)$/|min:8',
+            'pays'=> 'required',
+            'rue'=> 'required|min:4',
+            'ville'=> 'required|min:3',
+            'code_postal'=> 'required',
+        ]);
+
+        AdresseLivraison::findOrfail($request->id)->update([
+            "nom" => $request->nom,
+            "prenom" => $request->prenom,
+            "email" => $request->email,
+            "telephone" => $request->telephone,
+            "pays" => $request->pays,
+            "rue" => $request->rue,
+            "ville" => $request->ville,
+            "code_postal" => $request->code_postal,
+        ]);
+
+        flashy()->success('Modification reçue');
+        return redirect()->back();
+    }
+
+    // annulation commande
+
+    public function annuler_commande($id) {
+
+        $commande = Commande::find($id);
+        $commande['status'] = 'annulee';
+        $commande->save();
+
+
+        flashy()->success('commande annuler avec succès');
+        return redirect('/');
+
+    }
+
+
 }

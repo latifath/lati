@@ -30,7 +30,11 @@ class CommandeClientController extends Controller
 
             $commandes = Paiement::where('commande_id', $id)->get();
 
+            // adresse livraison
 
-            return view('espace-client.commande.show', compact('commande_detail', 'id', 'commande', 'commandes'));
+            $commande_liv = Commande::where('adresse_livraison_id', $id)->get();
+
+
+            return view('espace-client.commande.show', compact('commande_detail', 'id', 'commande', 'commandes', 'commande_liv'));
         }
 }

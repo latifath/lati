@@ -24,7 +24,7 @@
                             <td>{{ $item->email}}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>
-                                    <button id="btn_delete" class="btn btn-primary" data-attr="{{ route('root_delete_clients', $item->id) }}" class="btn" style="{{ couleur_background_2() }}; {{ couleur_blanche() }}"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button>
+                                    <button id="btn_delete" class="btn " data-attr="" class="btn" style="{{ couleur_background_2() }}; {{ couleur_blanche() }}"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button>
 
                                 <a href="#">
                                     <button class="btn" style="{{ couleur_background_2() }}; {{ couleur_blanche() }}"><i class="fa fa-trash" aria-hidden="true"></i> Bloquer l'accès</button>
@@ -37,7 +37,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                @include('layouts.Modal')
+                {{-- @include('layouts.Modal') --}}
             </div>
         </div>
     </div> <!-- end col -->
@@ -48,24 +48,6 @@
 
             $('#DeleteModalCenter').modal('show');
         });
-
-//         $(function(){
-//     $('form').submit(function(e) {
-//       e.preventDefault()
-//       var $form = $(this)
-//       $.post($form.attr('action'), $form.serialize())
-//       .done(function(data) {
-//         $('#html').html(data)
-//         $('#formulaire').modal('hide')
-//       })
-//       .fail(function() {
-//         alert('ça ne marche pas...')
-//       })
-//     })
-//     $('.modal').on('shown.bs.modal', function(){
-//       $('input:first').focus()
-//     })
-//   })
     </script>
 @endsection
 @endsection

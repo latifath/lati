@@ -50,8 +50,17 @@
                         </a>
                     </li>
                     <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart"></i> <span> Produit</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Ajouter un produit</a></li>
+                            <li><a href="#">Tous les produits</a></li>
+                            <li><a href="#">Tous les produits</a></li>
+                        </ul>
+                    </li>
+                    <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart"></i> <span> Client</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="list-unstyled">
+                            <li><a href="#">Ajouter un client</a></li>
                             <li><a href="{{ route('root_espace_admin_clients_index') }}">Tous les clients</a></li>
                         </ul>
                     </li>
@@ -59,9 +68,38 @@
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart"></i> <span> Paiement</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="list-unstyled">
+                            <li><a href="">Ajouter un paiement</a></li>
                             <li><a href="{{ route('root_espace_admin_paiements_index') }}">Tous les paiements</a></li>
                         </ul>
                     </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-cart"></i><span>Commande</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Ajouter une commande</a></li>
+                            <li><a href="{{ route('root_espace_admin_commandes_index') }}">Tous les commandes</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="{{ route('root_espace_admin_commandes_news') }}" class="waves-effect"><i class="fa fa-shopping-cart"></i><span>Newsletter</span> </a>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i><span>Utilisateur</span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('root_espace_admin_index_utilisateur') }}">Tous les utilisateurs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user" aria-hidden="true"></i><span></span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('root_espace_admin_index_utilisateur') }}">Tous les utilisateurs</a></li>
+                        </ul>
+                    </li>
+
+
 
                 @endadmin
             </ul>

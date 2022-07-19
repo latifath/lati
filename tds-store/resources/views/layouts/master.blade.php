@@ -84,7 +84,6 @@
     @include('layouts.partials.footer')
     <!-- Footer End -->
 
-    @yield('js')
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top tx"><i class="fa fa-angle-double-up"></i></a>
@@ -92,6 +91,9 @@
 
     <!-- JavaScript Libraries -->
     <script src=https://code.jquery.com/jquery-3.4.1.min.js></script>
+
+    @yield('js')
+
     <script src=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js></script>
     <script src="{{ asset('assets/lib/easing/easing.min.js')  }}"></script>
     <script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js')  }}"></script>
@@ -102,10 +104,17 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    {{-- jqeuy js --}}
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-
+    <script>
+        function imprimer(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            window.location.reload();
+        }
+    </script>
 
 
 

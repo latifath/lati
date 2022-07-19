@@ -181,3 +181,4 @@ if(!function_exists(('last_image_produit'))){
         return Image::where('produit_id', $id_produit)->first();
     }
 }
+

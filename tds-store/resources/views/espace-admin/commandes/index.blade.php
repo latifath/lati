@@ -1,10 +1,12 @@
 @extends('layouts.master-dashboard')
-@section('paiement')
+
+@section('admin-commandes')
+
 <div class="row">
     <div class="col-md-12 col-12">
         <div class="card m-b-30">
             <div class="card-header bg-success">
-                <h4 class="mt-0 header-title text-white" style="font-size: 24px; text-align: center;">Commande effectuée</h4>
+                <h4 class="mt-0 header-title text-white" style="font-size: 24px; text-align: center;">Toutes les commandes</h4>
             </div>
 
             <div class="card-body">
@@ -12,34 +14,38 @@
                     <thead>
                     <tr>
                         <th>N°</th>
+                        <th>Id</th>
                         <th>Date</th>
-                        <th>Reference</th>
-                        <th>Type de paiement</th>
-                        <th>Monatant</th>
-                        <th>Identifiant commande</th>
+                        <th>Status</th>
+                        <th>Id client</th>
+                        <th>Id livraison</th>
+                        <th>Id utilisateur</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                         @php
-                            $t= 1;
+                            $y= 1;
                         @endphp
-                        @foreach($paiements as $paiement)
+                        @foreach ($commandes as $commande)
 
                         <tr>
-                            <td>{{ $t}}</td>
-                            <td>{{ $paiement->created_at }}</td>
-                            <td>{{ $paiement->reference }}</td>
-                            <td>{{ $paiement->type_paiement }}</td>
-                            <td>{{ $paiement->montant }}</td>
-                            <td>{{ $paiement->commande_id }}</td>
+                            <td>{{ $y}}</td>
+                            <td>{{ $commande->id }}</td>
+                            <td>{{ $commande->created_at }}</td>
+                            <td>{{ $commande->status }}</td>
+                            <td>{{ $commande->adresse_client_id }}</td>
+                            <td>{{ $commande->adresse_livraison_id}}</td>
+                            <td>{{ $commande->user_id}}</td>
                             <td>
-                                <button id="btn_details_commande" class="btn btn-primary" data-id="{{ commande($paiement->commande_id)->id}}" data-date="{{ commande($paiement->commande_id)->created_at}}" data-statut="{{ commande($paiement->commande_id)->status }}"><i class="fa fa-eye" aria-hidden="true"></i> Voir</button>
+                            <a href="{{ route('root_espace_admin_commandes_show', $commande->id) }}">
+                                <button  class="btn btn-primary"></i> Voir</button>
+                            </a>
                             </td>
                             @php
-                            $t++;
-                        @endphp
-                            @endforeach
+                            $y++;
+                            @endphp
+                        @endforeach
                         </tr>
 
                     </tbody>
@@ -49,7 +55,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="DetailsModalCommande" tabindex="-1" aria-labelledby="DetailsModalCommandeLabel" aria-hidden="true">
+
+{{-- <div class="modal fade" id="DetailsModalPaiement" tabindex="-1" aria-labelledby="DetailsModalPaiementLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -66,11 +73,19 @@
                         <td><span id='id_com'></span></td>
                     </tr>
                     <tr>
-                        <td>Date</td>
+                        <td>Reference</td>
                         <td><span id='date_com'></span></td>
                     </tr>
                     <tr>
-                        <td>status</td>
+                        <td>Montant</td>
+                        <td><span id='statut'></span></td>
+                    </tr>
+                     <tr>
+                        <td>Type de paiement</td>
+                        <td><span id='statut'></span></td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
                         <td><span id='statut'></span></td>
                     </tr>
 
@@ -83,26 +98,22 @@
         </div>
       </div>
     </div>
-</div>
+</div> --}}
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
-        $(document).on('click', '#btn_details_commande', function(){
+        $(document).on('click', '#btn_details_paiement', function(){
 
-             var ID = $(this).attr('data-id');
-             var date = $(this).attr('data-date');
-             var statut = $(this).attr('data-statut');
+            //  var ID = $(this).attr('data-id');
+            //  var date = $(this).attr('data-date');
+            //  var statut = $(this).attr('data-statut');
 
-            $('#id_com').html(ID);
-            $('#date_com').html(date);
-            $('#statut').html(statut);
+            // $('#id_com').html(ID);
+            // $('#date_com').html(date);
+            // $('#statut').html(statut);
 
-            $('#DetailsModalCommande').modal('show');
+            $('#DetailsModalPaiement').modal('show');
         });
     </script>
-@endsection
-
-{{-- <a href="{{ route('root_delete_clients', $item->id) }}">
-    <button class="btn" style="{{ couleur_background_2() }}; {{ couleur_blanche() }}"><i class="fa fa-trash" aria-hidden="true"></i> Supprimer</button>
-</a> --}}
+@endsection --}}

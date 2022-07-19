@@ -69,6 +69,14 @@
 
                         @yield('paiement')
 
+                        @yield('admin-commandes')
+
+                        @yield('les-info')
+
+                        @yield('index-utilisateur')
+
+                        @yield('newsletter')
+
                     </div>
 
                 </div>

@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Commande;
-use App\Http\Controllers\Controller;
 use App\Models\Newsletter;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeAdminController extends Controller
 {
@@ -65,9 +66,12 @@ class HomeAdminController extends Controller
 
     }
 
-    // public function show($id){
-    //     $commande = Commande:: where('adresse_client', $id);
-    //         return view('espace-admin.show', compact('commande'));
-    //     }
+    public function news(){
+        $newsletter = Newsletter::all();
+
+        return view('espace-admin.clients/newsletter', compact('newsletter'));
+
+    }
+
 
 }

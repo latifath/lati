@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,4 +21,37 @@ class UserController extends Controller
         flashy()->error('Vous êtes maintenant déconnecté !');
         return redirect()->route('root_index');
     }
+
+    public function index_utilisateur(){
+        $users = User::all();
+        return view('espace-admin/index-utilisateur', compact('users'));
+    }
+
+    public function edit_utilisateur(Request $request){
+
+            $request->validate([
+                'role'=> 'required',
+            ]);
+
+            User::findOrfail($request->id)->update([
+                "role" => $request->role,
+            ]);
+
+            flashy()->success('Rôle utilisateur modifié avec succès');
+
+            return redirect()->back();
+     }
+
+     public function delete(Request $request){
+
+        $user = User::find($request->id);
+
+        $user->delete();
+
+        flashy()->success('utilisateur supprimé avec succès');
+
+        return redirect()->back();
+    }
+
+
 }

@@ -60,7 +60,7 @@
                         </div>
                         <small class="pt-1"></small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }} FCFA</h3>
+                    <h3 class="font-weight-semi-bold mb-4">{{ number_format($produit->prix, 0, '.', ' ') }}FCFA</h3>
                     <form action="{{ route('root_create_panier', $produit) }}" method="POST">
                         @csrf
                         <div class="d-flex align-items-center mb-4 pt-2">
@@ -145,7 +145,7 @@
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{ $produit->nom }}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>{{ $produit->prix }}</h6>
+                            <h6>{{ number_format($produit->prix, 0,'.', ' ')}}FCFA</h6>
                             <h6 class="text-muted ml-2"><del>{{ $produit->prix }}</del></h6>
                         </div>
                     </div>

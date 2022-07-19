@@ -64,7 +64,7 @@
                             <tr>
                                 <td>{{ $item->id}}</td>
                                 <td>{{ $item->created_at}}</td>
-                                <td>{{ number_format(account_commande($item->id)->montant, '0', '.', ' ' )}} FCFA</td>
+                                <td>{{ number_format(account_commande($item->id)->montant, '0', '.', ' ' )}}FCFA</td>
                                 <td>{{ account_commande($item->id)->type_paiement}}</td>
                                 <td>
                                     <a href="{{ route('root_espace_client_commande_show', $item->id) }}">
@@ -82,7 +82,9 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 
-    <div class="row">
+
+    {{-- tableau commande annuler  --}}
+    {{-- <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-header bg-success">
@@ -106,7 +108,7 @@
                             <tr>
                                 <td>{{ $item->id}}</td>
                                 <td>{{ $item->created_at}}</td>
-                                <td>{{ number_format(account_commande($item->id)->montant, 0, '.', ' ' )}} FCFA</td>
+                                <td>{{ number_format(account_commande($item->id)->montant, 0, '.', ' ' )}}FCFA</td>
                                 <td>{{ account_commande($item->id)->type_paiement}}</td>
                                 <td>
                                     <a href="{{ route('root_espace_client_commande_show', $item->id) }}">
@@ -120,7 +122,7 @@
                 </div>
             </div>
         </div> <!-- end col -->
-    </div> <!-- end row -->
+    </div> <!-- end row --> --}}
 
     <div class="row">
         <div class="col-12">

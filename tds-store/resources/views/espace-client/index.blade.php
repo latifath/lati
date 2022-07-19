@@ -34,10 +34,10 @@
             </div>
             <div class="card-body">
                 <div class="border-bottom pb-4">
-                        <span class="badge badge-success">{{ $paiement == " " ? '0' : number_format ($paiement->montant, 0, ',', ' ' )}}</span> <span class="ml-2 text-muted">From previous period</span>
+                        <span class="badge badge-success">{{ $paiement == " " ? '0' : number_format ($paiement->montant, 0, ',', ' ' )}}</span> <span class="ml-2 text-muted">Dernier paiement</span>
                 </div>
                 <div class="mt-4 text-muted">
-                    <h5 class="m-0" style="color: #ea0513;">{{ $paiement == " " ? '0' : number_format ($paiement->montant, 0, ',', ' ' ) }} FCFA<i class="mdi mdi-arrow-up text-success ml-2"></i></h5>
+                    <h5 class="m-0" style="color: #ea0513;">{{ $paiement == " " ? '0' : number_format ($paiement->montant, 0, ',', ' ' ) }}FCFA<i class="mdi mdi-arrow-up text-success ml-2"></i></h5>
 
                 </div>
             </div>

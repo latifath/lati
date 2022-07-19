@@ -2,7 +2,7 @@
 @component('mail::message')
 
 # Mr/Mme {{ $clt['nom'] }}
-<p>Nous avons recue votre commande!</p>
+<p>Nous avons reçue votre commande!, merci de continuer le processus.</p>
 
 <div>
     <h3>Adresse info</h3>
@@ -55,13 +55,12 @@
 <h3> Information commande</h3>
 
 
-    |  Id           | Date          | total   |
+    |  Id               | Date                       | total      |
 
-    | |:-------------:| --------:|
+    |:-----------------:| --------------------------:|
 
-    |{{ $commande->id }}  |{{ $commande->created_at }}     |    |
+    |{{ $commande->id }}|{{ $commande->created_at }} |            |
 
-    {{-- | Col 3 is      | Right-Aligned | $20      | --}}
 
 @endcomponent
 

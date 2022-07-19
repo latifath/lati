@@ -59,7 +59,7 @@
 
                                     <div class="col-md-6 form-group">
                                         <label>Téléphone</label>
-                                        <input id="phone" type="tel"  class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" value="{{ isset($adresseclient) ? $adresseclient->telephone : '' }}"  placeholder="" name="telephone">
+                                        <input id="phone1" type="tel"  class="form-control {{ $errors->has('telephone') ? 'is-invalid' : '' }}" value="{{ isset($adresseclient) ? $adresseclient->telephone : '' }}"  placeholder="" name="telephone">
                                         {!! $errors->first('telephone', '<p class="text-danger">:message</p>') !!}
 
                                        <div class="alert alert-info" style="display: none;"></div>
@@ -102,82 +102,7 @@
                             </fieldset>
                         </div>
 
-                        <div class="mb-4 col-12">
-                            <fieldset class="border p-2 mr-auto ml-2" style="border-color: #212529!important;">
-                                <legend>
-                                    <h4 class="font-weight-semi-bold mb-4">Adresse de livraison</h4>
-                                </legend>
-                                    <div class="col-sm-offset-3 col-sm-9">
-                                        <div class="form-check">
-                                        <label class="form-check-label check-form-livraison" >
-                                            <input type="checkbox" class="form-check-input" value=""  onchange="valueChanged()">Adresse de livraison différente de adresse de facturation
-                                        </label>
-                                        </div>
-
-                                </div>
-                                <div class="row form-livraison">
-                                    <div class="col-md-6 form-group ">
-                                        <label>Nom</label>
-                                        <input class="form-control {{ $errors->has('nomLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="" name="nomLivraison" >
-                                        {!! $errors->first('nomLivraison', '<p class="text-danger">:message</p>') !!}
-
-                                   </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Prénom</label>
-                                        <input class="form-control {{ $errors->has('prenomLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="" name="prenomLivraison">
-                                        {!! $errors->first('prenomLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>E-mail</label>
-                                        <input class="form-control {{ $errors->has('emailLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="" name="emailLivraison">
-                                        {!! $errors->first('emailLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Téléphone</label>
-                                        <input id="phone1 type=tel1" class="form-control {{ $errors->has('telephoneLivraison') ? 'is-invalid' : '' }}" placeholder="" name="telephoneLivraison">
-                                        {!! $errors->first('telephoneLivraison', '<p class="text-danger">:message</p>') !!}
-                                        <div class="alert alert-info" style="display: none;"></div>
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Pays</label>
-                                        <select class="custom-select {{ $errors->has('paysLivraison') ? 'is-invalid' : '' }}" name="paysLivraison">
-                                            @if (isset($adresseclient))
-                                                <option value="{{ $adresseclient->pays }}">{{ $adresseclient->pays }}</option>
-                                            @else
-                                                <option selected>Bénin</option>
-                                            @endif
-                                            <option>Ghana</option>
-                                            <option>Togo</option>
-                                            <option>Niger</option>
-                                        </select>
-                                        {!! $errors->first('paysLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Rue</label>
-                                        <input class="form-control {{ $errors->has('rueLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="Numero de la voie et nom de la rue" name="rueLivraison">
-                                        {!! $errors->first('rueLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Ville</label>
-                                        <input  style="border: 1px, solid" class="form-control {{ $errors->has('villeLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="" name="villeLivraison">
-                                        {!! $errors->first('villeLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Code postal</label>
-                                        <input class="form-control {{ $errors->has('code_postalLivraison') ? 'is-invalid' : '' }}" type="text" placeholder="123" name="code_postalLivraison" >
-                                        {!! $errors->first('code_postalLivraison', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
+                        @livewire('show-adr-livr-information')
                     </div>
                     <div class="row">
 
@@ -261,30 +186,30 @@
 @endsection
 
 <script>
-    function valueChanged()
-    {
-        if($('.form-check-input').is(":checked"))
-        {
-            $(".form-livraison").show();
-            setRequired(true)
-        }
-        else
-        {
-            $(".form-livraison").hide();
-            setRequired(false)
-        }
-    }
+    // function valueChanged()
+    // {
+    //     if($('.form-check-input').is(":checked"))
+    //     {
+    //         $(".form-livraison").show();
+    //         setRequired(true)
+    //     }
+    //     else
+    //     {
+    //         $(".form-livraison").hide();
+    //         setRequired(false)
+    //     }
+    // }
 
-    function setRequired(val){
-        var input = document.querySelectorAll('.form-livraison input')
-        for(i = 0; i < input.length; i++){
-            input[i].required = val;
-        }
-    }
+    // function setRequired(val){
+    //     var input = document.querySelectorAll('.form-livraison input')
+    //     for(i = 0; i < input.length; i++){
+    //         input[i].required = val;
+    //     }
+    // }
 
-    window.onload = function () {
-        valueChanged()
-    }
+    // window.onload = function () {
+    //     valueChanged()
+    // }
 
 </script>
 @section('js')
@@ -300,8 +225,18 @@ function getIp(callback) {
    })
    .then((resp) => callback(resp.country));
 }
-    const phoneInputField = document.querySelector("#phone");
-   const phoneInput = window.intlTelInput(phoneInputField, {
+    const phoneInputField1 = document.querySelector("#phone1");
+    const phoneInputField2 = document.querySelector("#phone2");
+
+   const phoneInput1 = window.intlTelInput(phoneInputField1, {
+     initialCountry: "auto",
+     geoIpLookup: getIp,
+     preferredCountries: ["côte-d'ivore", "gha", "togo", "fr"],
+     utilsScript:
+       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+   });
+
+   const phoneInput2 = window.intlTelInput(phoneInputField2, {
      initialCountry: "auto",
      geoIpLookup: getIp,
      preferredCountries: ["côte-d'ivore", "gha", "togo", "fr"],
@@ -313,42 +248,13 @@ const info = document.querySelector(".alert-info");
 function process(event) {
  event.preventDefault();
 
- const phoneNumber = phoneInput.getNumber();
+ const phoneNumber1 = phoneInput1.getNumber();
+ const phoneNumber2 = phoneInput2.getNumber();
 
  info.style.display = "";
- info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+ info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber1}</strong>`;
+ info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber2}</strong>`;
 }
-
-// function get1Ip(callback) {
-//  fetch('https://ipinfo.io/json?token=9299d29dc5c97f', { headers: { 'Accept': 'application/json' }})
-//    .then((resp) => resp.json())
-//    .catch(() => {
-//      return {
-//        country: 'us',
-//      };
-//    })
-//    .then((resp) => callback(resp.country));
-// }
-//    const phone1InputField = document.querySelector("#phone1");
-//    const phone1Input = window.intlTelInput(phone1InputField, {
-//      initialCountry: "auto",
-//      geoIpLookup: get1Ip,
-//      preferredCountries: ["côte-d'ivore", "gha", "togo", "fr"],
-//      utilsScript:
-//        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-//    });
-
-//    onst info = document.querySelector(".alert-info");
-
-// function process(event) {
-//  event.preventDefault();
-
-//  const phone1Number = phone1Input.get1Number();
-
-//  info.style.display = "";
-//  info.innerHTML = `Phone1 number in E.164 format: <strong>${phone1Number}</strong>`;
-// }
-
 </script>
 @endsection
 
